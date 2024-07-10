@@ -1,0 +1,611 @@
+.logo,
+.sign-in {
+  text-decoration: none;
+  position: relative;
+  font-weight: 600;
+  color: inherit;
+  display: inline-block;
+  min-width: 56px;
+}
+.sign-in {
+  font-weight: 500;
+  min-width: 102px;
+}
+.if-you-dont {
+  align-self: stretch;
+  position: relative;
+}
+.you-can {
+  white-space: pre-wrap;
+}
+.register-here {
+  font-weight: 600;
+  color: #0c21c1;
+}
+.you-can-register-container {
+  align-self: stretch;
+  position: relative;
+}
+.if-you-dont-have-an-account-parent {
+  align-self: stretch;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 100%;
+  font-size: 16px;
+}
+.if-you-dont-have-an-account-parent,
+.sign-in-parent,
+.sign-in-title-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.sign-in-parent {
+  flex-direction: column;
+  gap: 22px;
+}
+.sign-in-title-container {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 2px 3px;
+  font-size: 30px;
+  color: #000;
+}
+.email {
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 36px;
+}
+.message-1-icon {
+  width: 17px;
+  height: 17px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.email-input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px 0 0;
+}
+.enter-your-email {
+  width: calc(100% - 17px);
+  border: 0;
+  outline: 0;
+  font-family: Poppins;
+  font-size: 16px;
+  background-color: transparent;
+  height: 25px;
+  flex: 1;
+  position: relative;
+  color: #000842;
+  text-align: left;
+  display: inline-block;
+  min-width: 119px;
+  padding: 0;
+}
+.email-input-container {
+  width: 226px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.email-input-border {
+  align-self: stretch;
+  height: 2px;
+  position: relative;
+  background-color: #000842;
+}
+.email-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 9px;
+}
+.password {
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 64px;
+}
+.password-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 2px;
+}
+.padlock-1-icon {
+  width: 17px;
+  height: 17px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.padlock-1-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px 0 0;
+}
+.enter-your-password {
+  position: relative;
+}
+.frame-group {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.invisible-1-icon {
+  height: 14px;
+  width: 14px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.password-input-container {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.password-input-border {
+  align-self: stretch;
+  height: 2px;
+  position: relative;
+  background-color: #999;
+}
+.password-input-container-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 0 8px;
+  gap: 9px;
+  font-size: 16px;
+  color: #000842;
+}
+.frame-input {
+  margin: 0;
+  height: 18px;
+  width: 15px;
+}
+.remember-me {
+  position: relative;
+  font-weight: 300;
+  display: inline-block;
+  min-width: 90px;
+}
+.password-input-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.forgot-password {
+  position: relative;
+  font-weight: 300;
+  color: #4d4d4d;
+  display: inline-block;
+  min-width: 108px;
+}
+.remember-forgot-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 100%;
+  gap: 20px;
+}
+.frame-parent,
+.remember-forgot-password {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.remember-forgot-password {
+  flex-direction: row;
+  padding: 0 0 0 2px;
+  font-size: 12px;
+  color: #000;
+}
+.frame-parent {
+  flex: 1;
+  flex-direction: column;
+  padding: 0 0 11px;
+  gap: 9px;
+}
+.frame-child {
+  height: 53px;
+  width: 429px;
+  position: relative;
+  box-shadow: 0 4px 26px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  background-color: #0c21c1;
+  display: none;
+  max-width: 100%;
+}
+.login {
+  text-decoration: none;
+  position: relative;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: Poppins;
+  color: #fff;
+  text-align: left;
+  display: inline-block;
+  min-width: 46px;
+  z-index: 1;
+}
+.rectangle-parent {
+  cursor: pointer;
+  border: 0;
+  padding: 14px 20px 13px 21px;
+  background-color: #0c21c1;
+  align-self: stretch;
+  box-shadow: 0 4px 26px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.rectangle-parent:hover {
+  background-color: #4054f5;
+}
+.or-continue-with {
+  position: relative;
+  font-weight: 500;
+}
+.social-logins-child {
+  height: 41.5px;
+  width: 41.5px;
+  position: relative;
+}
+.social-logins {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 44px;
+}
+.or-continue-with-parent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px;
+}
+.password-field-inner {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px 0 21px;
+}
+.password-field,
+.sign-in-title-container-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.password-field {
+  gap: 39px;
+  font-size: 16px;
+  color: #b5b5b5;
+}
+.sign-in-title-container-parent {
+  gap: 49px;
+}
+.frame-wrapper,
+.logo-parent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.frame-wrapper {
+  flex: 1;
+  flex-direction: column;
+  padding: 52px 0 0;
+  box-sizing: border-box;
+  min-width: 280px;
+  font-size: 13px;
+  color: #999;
+}
+.logo-parent {
+  flex-direction: row;
+  gap: 25px;
+  min-width: 512px;
+}
+.frame-item,
+.saly-10-icon {
+  position: relative;
+  max-width: 100%;
+}
+.frame-item {
+  width: 658px;
+  height: 700px;
+  border-radius: 15px;
+  background-color: #000842;
+  display: none;
+}
+.saly-10-icon {
+  height: 424.6px;
+  flex: 1;
+  overflow: hidden;
+  object-fit: cover;
+  z-index: 1;
+}
+.saly-logo {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 1px 0 22px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.empower-learning-with,
+.learntelligence {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.learntelligence {
+  margin: 0;
+  font-size: inherit;
+  line-height: 48.9px;
+  font-weight: 600;
+  font-family: inherit;
+}
+.empower-learning-with {
+  align-self: stretch;
+  font-size: 20px;
+  line-height: 24.4px;
+  font-weight: 300;
+}
+.rectangle-group,
+.saly-description {
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.saly-description {
+  width: 354.5px;
+  display: flex;
+  align-items: flex-start;
+  gap: 3.2px;
+}
+.rectangle-group {
+  width: 658px;
+  border-radius: 15px;
+  background-color: #000842;
+  padding: 52.2px 81px 78.3px 87px;
+  gap: 68.4px;
+  min-width: 478px;
+}
+.rectangle-group,
+.sign-in-page,
+.sign-in-page-inner {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+.sign-in-page-inner {
+  width: 658px;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 8px 0 0;
+  min-width: 428px;
+  max-width: 100%;
+  font-size: 36px;
+  color: #fff;
+}
+.sign-in-page {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 21px 25px 39px 32px;
+  line-height: normal;
+  letter-spacing: normal;
+  gap: 20px;
+  text-align: left;
+  font-size: 20px;
+  color: #000;
+  font-family: Poppins;
+}
+@media screen and (max-width: 1100px) {
+  .frame-parent,
+  .or-continue-with-parent {
+    width: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .frame-parent {
+    align-self: stretch;
+    flex: 1;
+    align-items: flex-start;
+  }
+  .or-continue-with-parent {
+    align-self: unset;
+    align-items: center;
+  }
+  .logo-parent {
+    flex: 1;
+  }
+  .sign-in-page {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .sign-in {
+    font-size: 24px;
+  }
+  .learntelligence {
+    font-size: 29px;
+    line-height: 39px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .sign-in {
+    font-size: 24px;
+  }
+  .learntelligence {
+    font-size: 32px;
+  }
+  .rectangle-group {
+    gap: 42px;
+    padding: 42px 45px 62px 49px;
+    box-sizing: border-box;
+  }
+  .sign-in-page {
+    flex-wrap: wrap;
+    padding-left: 21px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 825px) {
+  .sign-in {
+    font-size: 24px;
+  }
+  .learntelligence {
+    font-size: 32px;
+  }
+  .rectangle-group {
+    gap: 42px;
+    padding: 42px 45px 62px 49px;
+    box-sizing: border-box;
+  }
+  .sign-in-page-inner {
+    padding-top: 84px;
+    box-sizing: border-box;
+  }
+  .sign-in-page {
+    padding-left: 21px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .frame-wrapper {
+    padding-top: 34px;
+    box-sizing: border-box;
+  }
+  .logo-parent {
+    flex-wrap: wrap;
+  }
+  .logo-parent,
+  .sign-in-page-inner {
+    min-width: 100%;
+  }
+  .sign-in-page {
+    gap: 69px;
+  }
+  .sign-in {
+    font-size: 24px;
+  }
+  .learntelligence {
+    font-size: 32px;
+  }
+  .rectangle-group {
+    gap: 42px;
+    padding: 42px 45px 62px 49px;
+    box-sizing: border-box;
+  }
+  .sign-in-page-inner {
+    padding-top: 84px;
+    box-sizing: border-box;
+  }
+  .sign-in-page {
+    padding-left: 21px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 675px) {
+  .rectangle-group {
+    min-width: 100%;
+  }
+  .sign-in-page-inner {
+    gap: 24px;
+    padding-right: 53px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .logo {
+    font-size: 16px;
+  }
+  .sign-in {
+    font-size: 18px;
+  }
+  .if-you-dont-have-an-account-parent {
+    gap: 19px;
+  }
+  .remember-forgot-container {
+    flex-wrap: wrap;
+  }
+  .password-field {
+    gap: 19px;
+  }
+  .sign-in-title-container-parent {
+    gap: 24px;
+  }
+  .learntelligence {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .empower-learning-with {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .rectangle-group {
+    gap: 21px;
+    padding: 27px 20px 40px;
+    box-sizing: border-box;
+  }
+  .sign-in-page-inner {
+    padding-top: 55px;
+  }
+  .sign-in-page {
+    gap: 35px;
+  }
+  .rectangle-group {
+    min-width: 100%;
+  }
+  .sign-in-page-inner {
+    gap: 24px;
+    padding-right: 53px;
+    box-sizing: border-box;
+  }
+}

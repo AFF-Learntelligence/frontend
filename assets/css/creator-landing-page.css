@@ -1,0 +1,916 @@
+.bg-icon1 {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  position: absolute;
+  left: 0;
+  top: 325px;
+  transform: scale(1.78);
+}
+.image-item,
+.wrapper-bg1 {
+  position: absolute;
+  top: 0;
+  max-height: 100%;
+}
+.wrapper-bg1 {
+  height: calc(100% - 0.2px);
+  bottom: 0.2px;
+  left: 0;
+  width: 1391px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-item {
+  height: 28.28%;
+  width: 96.15%;
+  right: 0;
+  bottom: 71.72%;
+  left: 3.85%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.school-boy-holding-copy-space-icon1 {
+  position: absolute;
+  top: 165.3px;
+  left: 0;
+  width: 512px;
+  height: 669px;
+  object-fit: contain;
+  z-index: 1;
+}
+.image2 {
+  position: absolute;
+  top: -1.1px;
+  left: 763px;
+  width: 584.1px;
+  height: 834.3px;
+  z-index: 1;
+}
+.wrapper-bg-group {
+  width: 100%;
+  height: 833.2px;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.logo-icon4 {
+  height: 40.5px;
+  width: 156.8px;
+  position: relative;
+}
+.home4 {
+  text-decoration: none;
+  position: relative;
+  color: inherit;
+  display: inline-block;
+  min-width: 39px;
+}
+.nav-links4 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.avatar-icon4 {
+  height: 36px;
+  width: 36px;
+  position: relative;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.header-content4,
+.login-section4 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.header-content4 {
+  width: 100%;
+  justify-content: space-between;
+  max-width: 1280px;
+  gap: 20px;
+}
+.bg50,
+.header6 {
+  background-color: #fff;
+}
+.header6 {
+  align-self: stretch;
+  border-bottom: 1px solid #e8ecf2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 14px 43px 12px;
+  top: 0;
+  z-index: 99;
+  position: sticky;
+  text-align: left;
+  font-size: 14px;
+  color: #000;
+  font-family: Archivo;
+}
+.bg50 {
+  height: 50px;
+  width: 434px;
+  position: relative;
+  border-radius: 10px;
+  display: none;
+  max-width: 100%;
+}
+.hello-user1 {
+  width: 285.1px;
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.greeting {
+  width: 434px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 7px 38px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  max-width: 100%;
+  z-index: 1;
+}
+.courses-with1,
+.create-ai-generated,
+.learntelligence7 {
+  margin: 0;
+}
+.create-ai-generated-container {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: 58px;
+  line-height: 75px;
+  font-weight: 700;
+  font-family: inherit;
+  color: #0a033c;
+  z-index: 1;
+}
+.welcome-message {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 15px;
+  max-width: 100%;
+}
+.learntelligence-is-an1 {
+  width: 607px;
+  position: relative;
+  font-size: 16px;
+  line-height: 30px;
+  color: #5d5a6f;
+  display: inline-block;
+  max-width: 100%;
+  z-index: 1;
+}
+.main-content-inner,
+.welcome-message-parent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.welcome-message-parent {
+  flex: 1;
+  flex-direction: column;
+  gap: 30px;
+}
+.main-content-inner {
+  width: 630px;
+  flex-direction: row;
+  padding: 0 6px 181px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 24px;
+  color: #ff6652;
+}
+.your-courses {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 55px;
+  font-weight: 700;
+  font-family: inherit;
+}
+.course-header1 {
+  width: 721px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.welcome-creator-here {
+  align-self: stretch;
+  position: relative;
+  font-size: 16px;
+  line-height: 30px;
+  color: #5d5a6f;
+}
+.course-item1 {
+  width: 741px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 19px;
+  max-width: 100%;
+}
+.course-list2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+.bg51 {
+  width: 290px;
+  height: 329px;
+  position: relative;
+  border-radius: 15px;
+  background-color: #fff;
+  display: none;
+}
+.java-basics2 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  z-index: 1;
+}
+.card-badge {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 54px;
+}
+.java-basics-is2 {
+  align-self: stretch;
+  position: relative;
+  font-size: 16px;
+  line-height: 30px;
+  color: #5d5a6f;
+  z-index: 1;
+}
+.card-details {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 39px;
+}
+.bg52,
+.edit1 {
+  position: relative;
+}
+.bg52 {
+  height: 32px;
+  width: 68px;
+  border-radius: 5px;
+  border: 1px solid #0c21c1;
+  box-sizing: border-box;
+  display: none;
+}
+.edit1 {
+  flex: 1;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  font-family: Inter;
+  color: #0c21c1;
+  text-align: center;
+  z-index: 1;
+}
+.button-preview2 {
+  cursor: pointer;
+  border: 1px solid #0c21c1;
+  padding: 4px 6px 8px;
+  background-color: transparent;
+  flex: 1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 1;
+}
+.button-preview2:hover,
+.button-preview3:hover {
+  background-color: rgba(64, 84, 245, 0.09);
+  border: 1px solid #4054f5;
+  box-sizing: border-box;
+}
+.bg53,
+.share {
+  position: relative;
+}
+.bg53 {
+  height: 32px;
+  width: 68px;
+  border-radius: 5px;
+  border: 1px solid #0c21c1;
+  box-sizing: border-box;
+  display: none;
+}
+.share {
+  flex: 1;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  font-family: Inter;
+  color: #0c21c1;
+  text-align: center;
+  z-index: 1;
+}
+.button-preview3 {
+  cursor: pointer;
+  border: 1px solid #0c21c1;
+  padding: 4px 6px 8px;
+  background-color: transparent;
+  flex: 1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 1;
+}
+.bg54,
+.delete1 {
+  position: relative;
+}
+.bg54 {
+  height: 32px;
+  width: 68.2px;
+  border-radius: 5px;
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: none;
+}
+.delete1 {
+  flex: 1;
+  line-height: 16px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 44px;
+  z-index: 1;
+}
+.button-delete1 {
+  flex: 0.7786;
+  border-radius: 5px;
+  border: 1px solid red;
+  justify-content: flex-start;
+  padding: 4px 12px 8px;
+  z-index: 1;
+}
+.action-buttons1,
+.button-delete1,
+.card-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.action-buttons1 {
+  flex: 1;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.card-actions {
+  align-self: stretch;
+  justify-content: flex-end;
+  padding: 0 14px 0 17px;
+  font-size: 13px;
+  color: red;
+  font-family: Inter;
+}
+.card-content {
+  flex: 1;
+  border-radius: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 33px 15px 20px;
+  box-sizing: border-box;
+  gap: 77px;
+  min-width: 275px;
+}
+.bg55,
+.icon1 {
+  position: relative;
+}
+.bg55 {
+  height: 329px;
+  width: 290px;
+  border-radius: 15px;
+  background-color: #fff;
+  display: none;
+}
+.icon1 {
+  height: 14px;
+  width: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.badge1 {
+  width: 24px;
+  height: 22px;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid #457eff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  z-index: 1;
+}
+.badge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px 0 0;
+}
+.create1 {
+  width: 57px;
+  position: relative;
+  line-height: 30px;
+  display: inline-block;
+  flex-shrink: 0;
+  min-width: 57px;
+  z-index: 1;
+}
+.card-content1,
+.course-card1,
+.course-list-parent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.card-content1 {
+  flex: 0.3846;
+  border-radius: 15px;
+  background-color: #fff;
+  flex-direction: row;
+  padding: 148px 95px 151px;
+  box-sizing: border-box;
+  gap: 11px;
+  min-width: 275px;
+  font-size: 16px;
+  color: #5d5a6f;
+}
+.course-card1,
+.course-list-parent {
+  max-width: 100%;
+}
+.course-card1 {
+  width: 602px;
+  flex-direction: row;
+  gap: 22px;
+  font-size: 25px;
+}
+.course-list-parent {
+  width: 983px;
+  flex-direction: column;
+  gap: 82px;
+}
+.your-circles1 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 55px;
+  font-weight: 700;
+  font-family: inherit;
+}
+.circle-header {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px 9px 64px;
+}
+.circle-is-a2 {
+  width: 741px;
+  position: relative;
+  letter-spacing: 0.02em;
+  line-height: 180%;
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.circle-description {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px 19px 44px;
+  box-sizing: border-box;
+  max-width: 100%;
+  font-size: 16px;
+  color: #696984;
+}
+.join-circle1 {
+  flex: 1;
+  position: relative;
+  font-weight: 600;
+}
+.join-button {
+  width: 130px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 2px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 18px;
+  color: #5b5b5b;
+}
+.invitation-link-container-child,
+.invitation-link3 {
+  background-color: transparent;
+  position: relative;
+  max-width: 100%;
+}
+.invitation-link-container-child {
+  height: 60px;
+  width: 1062px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  display: none;
+}
+.invitation-link3 {
+  width: 375px;
+  border: 0;
+  outline: 0;
+  font-family: Poppins;
+  font-size: 18px;
+  height: 27px;
+  color: #9d9b9b;
+  text-align: left;
+  display: inline-block;
+  padding: 0;
+  z-index: 1;
+}
+.invitation-link-container {
+  align-self: stretch;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 14px 18px 15px;
+  max-width: 100%;
+}
+.bg56 {
+  height: 329px;
+  width: 290px;
+  position: relative;
+  border-radius: 15px;
+  background-color: #fff;
+  display: none;
+}
+.marketing-team2 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  z-index: 1;
+}
+.card-data {
+  border-radius: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 149px 40px 142px 41px;
+}
+.bg57,
+.icon2 {
+  position: relative;
+}
+.bg57 {
+  height: 329px;
+  width: 290px;
+  border-radius: 15px;
+  background-color: #fff;
+  display: none;
+}
+.icon2 {
+  height: 14px;
+  width: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.badge2 {
+  width: 24px;
+  height: 22px;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid #457eff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  z-index: 1;
+}
+.badge-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px 0 0;
+}
+.create2 {
+  width: 57px;
+  position: relative;
+  line-height: 30px;
+  display: inline-block;
+  flex-shrink: 0;
+  min-width: 57px;
+  z-index: 1;
+}
+.card-data1,
+.circle-card,
+.invitation-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.card-data1 {
+  flex: 1;
+  border-radius: 15px;
+  background-color: #fff;
+  flex-direction: row;
+  padding: 148px 95px 151px;
+  box-sizing: border-box;
+  gap: 11px;
+  min-width: 188px;
+  font-size: 16px;
+  color: #5d5a6f;
+}
+.circle-card,
+.invitation-content {
+  max-width: 100%;
+}
+.circle-card {
+  width: 602px;
+  flex-direction: row;
+  gap: 22px;
+}
+.invitation-content {
+  flex: 1;
+  flex-direction: column;
+  gap: 37px;
+  min-width: 690px;
+}
+.bg58,
+.join1 {
+  position: relative;
+}
+.bg58 {
+  height: 60px;
+  width: 127px;
+  border-radius: 10px;
+  background-color: #0c21c1;
+  display: none;
+}
+.join1 {
+  flex: 1;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: Inter;
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+}
+.button-generate-course1,
+.invitation-content-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.button-generate-course1 {
+  cursor: pointer;
+  border: 0;
+  padding: 20px 25px 20px 27px;
+  background-color: #0c21c1;
+  width: 127px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.button-generate-course1:hover {
+  background-color: #4054f5;
+}
+.invitation-content-parent {
+  align-self: stretch;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 100%;
+  font-size: 25px;
+}
+.circle-header-parent {
+  align-self: stretch;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+}
+.circle-header-parent,
+.creator-landing-page,
+.main-content,
+.main-content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.main-content {
+  flex: 1;
+  flex-direction: column;
+  gap: 147px;
+  max-width: 100%;
+  text-align: center;
+  font-size: 45px;
+  color: #0a033c;
+  font-family: Poppins;
+}
+.creator-landing-page,
+.main-content-wrapper {
+  box-sizing: border-box;
+}
+.main-content-wrapper {
+  width: 1349px;
+  flex-direction: row;
+  padding: 0 74px;
+  max-width: 100%;
+}
+.creator-landing-page {
+  width: 100%;
+  position: relative;
+  background-color: #f7f5fa;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 0 0 104px;
+  gap: 122.5px;
+  line-height: normal;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1275px) {
+  .header-content4 {
+    max-width: 100%;
+  }
+  .main-content {
+    gap: 73px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .course-list-parent {
+    gap: 41px;
+  }
+  .circle-description {
+    padding-left: 22px;
+    box-sizing: border-box;
+  }
+  .invitation-content {
+    min-width: 100%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .header6 {
+    padding-left: 21px;
+    padding-right: 21px;
+    box-sizing: border-box;
+  }
+  .create-ai-generated-container {
+    font-size: 46px;
+    line-height: 60px;
+  }
+  .main-content-inner {
+    padding-bottom: 118px;
+    box-sizing: border-box;
+  }
+  .your-courses {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .card-content,
+  .card-content1 {
+    flex: 1;
+  }
+  .course-card1 {
+    flex-wrap: wrap;
+  }
+  .course-list-parent {
+    gap: 20px;
+  }
+  .your-circles1 {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .circle-card {
+    flex-wrap: wrap;
+  }
+  .invitation-content {
+    gap: 18px;
+  }
+  .main-content {
+    gap: 37px;
+  }
+  .main-content-wrapper {
+    padding-left: 37px;
+    padding-right: 37px;
+    box-sizing: border-box;
+  }
+  .creator-landing-page {
+    gap: 61px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .create-ai-generated-container {
+    font-size: 35px;
+    line-height: 45px;
+  }
+  .your-courses {
+    font-size: 27px;
+    line-height: 33px;
+  }
+  .java-basics2 {
+    font-size: 20px;
+  }
+  .card-badge {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  .card-details {
+    gap: 19px;
+  }
+  .card-content {
+    gap: 38px;
+  }
+  .card-content1 {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  .your-circles1 {
+    font-size: 27px;
+    line-height: 33px;
+  }
+  .circle-header {
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+  .marketing-team2 {
+    font-size: 20px;
+  }
+  .card-data1 {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  .main-content {
+    gap: 18px;
+  }
+  .creator-landing-page {
+    gap: 31px;
+  }
+}
