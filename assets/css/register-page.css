@@ -1,590 +1,76 @@
-.logo4,
-.register {
-  text-decoration: none;
-  position: relative;
-  font-weight: 600;
-  color: inherit;
-  display: inline-block;
-  min-width: 56px;
-}
-.register {
-  font-weight: 500;
-  min-width: 123px;
-}
-.if-you-already {
-  align-self: stretch;
-  position: relative;
-}
-.you-can1 {
-  white-space: pre-wrap;
-}
-.login-here {
-  font-weight: 600;
-  color: #0c21c1;
-}
-.you-can-login-container {
-  width: 308px;
-  position: relative;
-  display: inline-block;
-}
-.login-info,
-.login-prompt {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.login-prompt {
-  align-self: stretch;
-  gap: 6px;
-  font-size: 16px;
-}
-.login-info {
-  width: 332px;
-  padding: 0 0 10px;
-  box-sizing: border-box;
-  gap: 22px;
-  max-width: 100%;
-  font-size: 30px;
-  color: #000;
-}
-.email4 {
-  position: relative;
-  font-weight: 500;
-  display: inline-block;
-  min-width: 36px;
-}
-.message-1-icon4 {
-  width: 17px;
-  height: 17px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-  object-fit: contain;
-}
-.email-message {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 4px 0 0;
-}
-.enter-your-email3 {
-  width: calc(100% - 17px);
-  border: 0;
-  outline: 0;
-  font-family: Poppins;
-  font-size: 16px;
-  background-color: transparent;
-  height: 24px;
-  flex: 1;
-  position: relative;
-  color: #000842;
-  text-align: left;
-  display: inline-block;
-  min-width: 119px;
+body, html {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
   padding: 0;
-}
-.email-input {
-  width: 226px;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 10px;
-}
-.instance-child2 {
-  align-self: stretch;
-  height: 2px;
-  position: relative;
-  background-color: #000842;
-}
-.email-parent2 {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 9px;
-}
-.username {
-  position: relative;
-  font-weight: 500;
-  display: inline-block;
-  min-width: 68px;
-}
-.username-field {
-  width: 225px;
-  border: 0;
-  outline: 0;
-  background-color: transparent;
-  height: 24px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0 27px;
-  box-sizing: border-box;
-  font-family: Poppins;
-  font-size: 16px;
-  color: #000842;
-}
-.instance-child3 {
-  align-self: stretch;
-  height: 2px;
-  position: relative;
-  background-color: #999;
-}
-.message-1-icon5 {
-  width: 17px;
-  height: 17px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-  object-fit: contain;
-  display: none;
-}
-.username-parent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 9px;
-  max-width: 100%;
-  height: 100%;
-}
-.user-1-icon {
-  position: absolute;
-  top: 33px;
-  left: 0;
-  width: 16px;
-  height: 16px;
-  overflow: hidden;
-  z-index: 1;
-}
-.instance-group {
-  align-self: stretch;
-  height: 64px;
-  position: relative;
-  max-width: 100%;
-}
-.password2 {
-  position: relative;
-  font-weight: 500;
-  display: inline-block;
-  min-width: 64px;
-}
-.register-button {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0 1px;
-}
-.padlock-1-icon3 {
-  width: 17px;
-  height: 17px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.hidden-field {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 5px 0 0;
-}
-.enter-your-password2 {
-  position: relative;
-}
-.padlock-icon {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 11px;
-}
-.invisible-1-icon3 {
-  width: 14px;
-  height: 14px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.password-input {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 0 1px;
-}
-.confirm-password-input {
-  align-self: stretch;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
-  font-size: 16px;
-  color: #000842;
-}
-.register-divider {
-  align-self: stretch;
-  flex: 1;
-  position: relative;
-  background-color: #999;
-  max-width: 100%;
-}
-.confirm-password,
-.register-divider-wrapper {
-  align-self: stretch;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  max-width: 100%;
-}
-.register-divider-wrapper {
-  height: 2px;
-  flex-direction: row;
-  padding: 0 0 0 1px;
-  box-sizing: border-box;
-}
-.confirm-password {
-  flex-direction: column;
-  gap: 9px;
-}
-.confrim-password1 {
-  position: relative;
-  font-weight: 500;
-  display: inline-block;
-  min-width: 120px;
-}
-.confrim-password-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0 1px;
-}
-.padlock-1-icon4 {
-  width: 17px;
-  height: 17px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.padlock-1-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 3px 0 0;
-}
-.confrim-your-password1 {
-  position: relative;
-}
-.frame-parent3 {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 11px;
-}
-.invisible-1-icon4 {
-  width: 14px;
-  height: 14px;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.invisible-1-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 0 1px;
-}
-.frame-parent2 {
-  align-self: stretch;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
-  font-size: 16px;
-  color: #000842;
-}
-.register-call-to-action-child {
-  align-self: stretch;
-  flex: 1;
-  position: relative;
-  background-color: #999;
-  max-width: 100%;
-}
-.confirm-password1,
-.register-call-to-action {
-  align-self: stretch;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  max-width: 100%;
-}
-.register-call-to-action {
-  height: 2px;
-  flex-direction: row;
-  padding: 0 0 0 1px;
-}
-.confirm-password1 {
-  flex-direction: column;
-  padding: 0 0 16px;
-  gap: 9px;
-}
-.frame-child5 {
-  height: 53px;
-  width: 429px;
-  position: relative;
-  box-shadow: 0 4px 26px rgba(0, 0, 0, 0.25);
-  border-radius: 32px;
-  background-color: #0c21c1;
-  display: none;
-  max-width: 100%;
-}
-.register1 {
-  position: relative;
-  font-size: 17px;
-  font-weight: 500;
-  font-family: Poppins;
-  color: #fff;
-  text-align: left;
-  display: inline-block;
-  min-width: 70px;
-  z-index: 1;
-}
-.rectangle-parent4,
-.register-button-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  box-sizing: border-box;
-  max-width: 100%;
-}
-.rectangle-parent4 {
-  cursor: pointer;
-  border: 0;
-  padding: 14px 20px 13px 21px;
-  background-color: #0c21c1;
-  flex: 1;
-  box-shadow: 0 4px 26px rgba(0, 0, 0, 0.25);
-  border-radius: 32px;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
 }
-.rectangle-parent4:hover {
+
+.register-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.form-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.form-content {
+  max-width: 500px;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="email"], input[type="text"], input[type="password"] {
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-btn {
+  padding: 10px 20px;
+  background-color: #0c21c1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.register-btn:hover {
   background-color: #4054f5;
 }
-.register-button-wrapper {
-  align-self: stretch;
-  justify-content: flex-start;
-  padding: 0 0 0 1px;
-}
-.password-fields {
-  align-self: stretch;
-  flex-direction: column;
-  gap: 42px;
-}
-.main,
-.password-fields,
-.password-fields-wrapper {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  max-width: 100%;
-}
-.password-fields-wrapper {
+
+.image-container {
   flex: 1;
-  flex-direction: column;
-  padding: 47px 0 0;
-  box-sizing: border-box;
-  min-width: 279px;
-  font-size: 13px;
-  color: #999;
-}
-.main {
-  width: 516px;
-  flex-direction: row;
-  gap: 30px;
-  min-width: 516px;
-}
-.frame-child6,
-.saly-10-icon4 {
-  position: relative;
-  max-width: 100%;
-}
-.frame-child6 {
-  width: 658px;
-  height: 700px;
-  border-radius: 15px;
-  background-color: #000842;
-  display: none;
-}
-.saly-10-icon4 {
-  height: 424.6px;
-  flex: 1;
-  overflow: hidden;
-  object-fit: cover;
-  z-index: 1;
-}
-.brand-logo {
-  align-self: stretch;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0 1px 0 22px;
-  box-sizing: border-box;
-  max-width: 100%;
-}
-.learntelligence4 {
-  margin: 0;
-  width: 296.3px;
-  position: relative;
-  font-size: inherit;
-  line-height: 48.9px;
-  font-weight: 600;
-  font-family: inherit;
-  display: inline-block;
-  flex-shrink: 0;
-  z-index: 1;
-}
-.empower-learning-with4 {
-  align-self: stretch;
-  position: relative;
-  font-size: 20px;
-  line-height: 24.4px;
-  font-weight: 300;
-  flex-shrink: 0;
-  z-index: 1;
-}
-.rectangle-parent5,
-.sign-up-info {
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  max-width: 100%;
+  align-items: center;
+  justify-content: center;
 }
-.sign-up-info {
-  width: 354.5px;
-  display: flex;
-  gap: 3.2px;
+
+.image-container img {
+  max-height: 500px; /* Adjust size accordingly */
 }
-.rectangle-parent5 {
-  align-self: stretch;
-  border-radius: 15px;
-  background-color: #000842;
-  padding: 52.2px 81px 78.3px 87px;
-  gap: 68.4px;
-}
-.footer,
-.rectangle-parent5,
-.register-page {
-  display: flex;
-  box-sizing: border-box;
-}
-.footer {
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 0 4px;
-  min-width: 428px;
-  max-width: 100%;
-  font-size: 36px;
-  color: #fff;
-}
-.register-page {
-  width: 100%;
-  position: relative;
-  background-color: #fff;
-  overflow: hidden;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 21px 25px 34px 37px;
-  gap: 130px;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  font-size: 20px;
-  color: #000;
-  font-family: Poppins;
-}
-@media screen and (max-width: 1100px) {
-  .main {
-    flex: 1;
-  }
+
+@media (max-width: 800px) {
   .register-page {
-    flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
   }
-}
-@media screen and (max-width: 1025px) {
-  .register {
-    font-size: 24px;
-  }
-  .learntelligence4 {
-    font-size: 29px;
-    line-height: 39px;
-  }
-}
-@media screen and (max-width: 750px) {
-  .password-fields-wrapper {
-    padding-top: 31px;
-    box-sizing: border-box;
-  }
-  .main {
-    flex-wrap: wrap;
-    min-width: 100%;
-  }
-  .rectangle-parent5 {
-    gap: 34px;
-    padding: 34px 40px 51px 43px;
-    box-sizing: border-box;
-  }
-  .footer {
-    min-width: 100%;
-  }
-  .register-page {
-    gap: 65px;
-  }
-}
-@media screen and (max-width: 450px) {
-  .logo4 {
-    font-size: 16px;
-  }
-  .register {
-    font-size: 18px;
-  }
-  .password-fields {
-    gap: 21px;
-  }
-  .learntelligence4 {
-    font-size: 22px;
-    line-height: 29px;
-  }
-  .empower-learning-with4 {
-    font-size: 16px;
-    line-height: 20px;
-  }
-  .rectangle-parent5 {
-    gap: 17px;
-    padding-left: 20px;
-    box-sizing: border-box;
-  }
-  .register-page {
-    gap: 32px;
+
+  .image-container, .form-container {
+      width: 100%;
   }
 }
