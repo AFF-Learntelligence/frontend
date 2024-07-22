@@ -61,10 +61,10 @@ input[type="email"], input[type="text"], input[type="password"] {
 }
 
 .image-container img {
-  max-height: 500px; /* Adjust size accordingly */
+  max-height: 500px; 
 }
 
-@media (max-width: 800px) {
+@media (max-width: 320px) {
   .register-page {
       flex-direction: column;
       align-items: center;
