@@ -1,94 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/register-page.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="../assets/css/register-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito Sans:wght@700&display=swap"
+    />
+
     <style>
-        @font-face {
-            font-family: "Font Awesome 5 Free";
-            src: url("../assets/public/Font Awesome 5 Free-Regular-400.otf");
-            font-weight: 400;
-        }
-        .error-message, .validation-list {
-            color: red;
-            font-size: 12px;
-            display: none; /* Initially hidden */
-            margin-top: 5px;
-        }
-        .valid {
-            color: green;
-        }
-        .invalid {
-            color: red;
-        }
+      @font-face {
+        font-family: "Font Awesome 5 Free";
+        src: url("../assets/public/Font Awesome 5 Free-Regular-400.otf");
+        font-weight: 400;
+      }
     </style>
-    <title>Register</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="register-page">
-        <div class="form-container">
-            <div class="form-content">
-                <a href="#" class="logo">LOGO</a>
-                <h1>Register</h1>
-                <p>If you already have an account <a href="/templates/sign-in-page.html" class="login-link">Login here!</a></p>
-                <form class="registration-form" onsubmit="return validateForm()">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email address">
-                    
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your name">
-                    
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your Password" oninput="validatePassword(this.value)">
-                    <ul class="validation-list" id="validation-list">
-                        <li id="min-char">At least 8 characters</li>
-                        <li id="upper-case">At least one uppercase letter</li>
-                        <li id="lower-case">At least one lowercase letter</li>
-                        <li id="number">At least one number</li>
-                    </ul>
-                    
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" placeholder="Confirm your Password">
-                    <span id="password-error" class="error-message">Passwords do not match.</span>
-                    
-                    <button type="submit" class="register-btn">Register</button>
-                </form>
+      <div class="main">
+        <a class="logo4">LOGO</a>
+        <div class="password-fields-wrapper">
+          <div class="password-fields">
+            <div class="login-info">
+              <a class="register" href="/templates/register-page.html">Register</a>
+              <div class="login-prompt">
+                <div class="if-you-already">If you already have an account</div>
+                <div class="you-can-login-container">
+                  <span class="you-can1">You can </span>
+                  <span class="login-here">Login here !</span>
+                </div>
+              </div>
             </div>
+            <form class="registration-form" onsubmit="validateConfirmPassword(event)">
+                <div class="email-parent2">
+                  <div class="email4">Email</div>
+                  <div class="email-input">
+                    <div class="email-message">
+                      <img
+                        class="message-1-icon4"
+                        alt=""
+                        src="../assets/public/message-1.svg"
+                      />
+                    </div>
+                    <input
+                      class="email-input-value"
+                      placeholder="Enter your email address"
+                      type="email"
+                      required
+                    />
+                  </div>
+                  <div class="instance-child2"></div>
+                </div>
+                <div class="instance-group">
+                  <div class="username-parent">
+                    <div class="username">Name</div>
+                    <input
+                      class="name-input-value"
+                      placeholder="Enter your Name"
+                      type="text"
+                      required
+                    />
+    
+                    <div class="instance-child3"></div>
+                    <img
+                      class="message-1-icon5"
+                      alt=""
+                      src="../assets/public/message-1.svg"
+                    />
+                  </div>
+                  <img class="user-1-icon" alt="" src="../assets/public/user-1.svg" />
+                </div>
+                <div class="confirm-password">
+                  <div class="register-button">
+                    <div class="password2">Password</div>
+                  </div>
+                  <div class="confirm-password-input">
+                    <div class="padlock-icon">
+                      <div class="hidden-field">
+                        <img
+                          class="padlock-1-icon3"
+                          loading="lazy"
+                          alt=""
+                          src="../assets/public/padlock-1.svg"
+                        />
+                      </div>
+                      <input
+                        class="password-input-value"
+                        placeholder="Enter your Password"
+                        type="password"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="register-divider-wrapper">
+                    <div class="register-divider"></div>
+                  </div>
+                  <ul class="validation-list" id="validation-list">
+                    <li class="password-requirements" id="min-length">At least 8 characters</li>
+                    <li class="password-requirements" id="uppercase">At least one uppercase letter</li>
+                    <li class="password-requirements" id="lowercase">At least one lowercase letter</li>
+                    <li class="password-requirements" id="number">At least one number</li>
+                  </ul>
+                </div>
+                <div class="confirm-password1">
+                  <div class="confrim-password-wrapper">
+                    <div class="confrim-password1">Confirm Password</div>
+                  </div>
+                  <div class="frame-parent2">
+                    <div class="frame-parent3">
+                      <div class="padlock-1-container">
+                        <img
+                          class="padlock-1-icon4"
+                          loading="lazy"
+                          alt=""
+                          src="../assets/public/padlock-1.svg"
+                        />
+                      </div>
+                      <input
+                        class="password-confirm-input-value"
+                        placeholder="Confirm your Password"
+                        type="password"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="register-call-to-action">
+                    <div class="register-call-to-action-child"></div>
+                  </div>
+                  <span class="confirm-password-error">Password do not match.</span>
+                </div>
+                <div class="register-button-wrapper">
+                  <button type="submit" class="rectangle-parent4">
+                    <div class="frame-child5"></div>
+                    <div class="register1">Register</div>
+                  </button>
+                </div>
+            </form>
+          </div>
         </div>
-        <div class="image-container">
-            <img src="../assets/public/saly10@2x.png" alt="Footer Image" style="max-width: 100%;">
-            <div>
-                <h1>Learntelligence</h1>
-                <p>Empower Learning with AI</p>
-            </div>
+      </div>
+      <div class="footer">
+        <div class="rectangle-parent5">
+          <div class="frame-child6"></div>
+          <div class="brand-logo">
+            <img
+              class="saly-10-icon4"
+              loading="lazy"
+              alt=""
+              src="../assets/public/saly10@2x.png"
+            />
+          </div>
+          <div class="sign-up-info">
+            <h1 class="learntelligence4">Learntelligence</h1>
+            <div class="empower-learning-with4">Empower Learning with AI</div>
+          </div>
         </div>
+      </div>
     </div>
     <script>
-        function validatePassword(password) {
-            document.getElementById('validation-list').style.display = 'block'; // Show the list when user starts typing
-            document.getElementById('min-char').className = password.length >= 8 ? 'valid' : 'invalid';
-            document.getElementById('upper-case').className = /[A-Z]/.test(password) ? 'valid' : 'invalid';
-            document.getElementById('lower-case').className = /[a-z]/.test(password) ? 'valid' : 'invalid';
-            document.getElementById('number').className = /[0-9]/.test(password) ? 'valid' : 'invalid';
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            function validateConfirmPassword(event) {
+                var passwordField = document.getElementsByClassName("password-input-value")[0].value;
+                var confirmPasswordField = document.getElementsByClassName("password-confirm-input-value")[0].value;
 
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirm-password").value;
-            var errorElement = document.getElementById("password-error");
-            var isValid = document.querySelectorAll('.valid').length === 4; // Check if all criteria are valid
+                var minLength = document.getElementById('min-length')
+                var uppercaseReq = document.getElementById('uppercase')
+                var lowercaseReq = document.getElementById('lowercase')
+                var numberReq = document.getElementById('number')
+                var errorMessage = document.getElementsByClassName("confirm-password-error")[0];
 
-            validatePassword(password); // Ensure password validation is up-to-date on submit
-            if (password !== confirmPassword || !isValid) {
-                errorElement.textContent = password !== confirmPassword ? "Passwords do not match." : "Password does not meet all requirements.";
-                errorElement.style.display = "block";
-                return false;
+                var isMinLengthMet = passwordField.length >= 8;
+                var isUppercaseMet = /[A-Z]/.test(passwordField);
+                var isLowercaseMet = /[a-z]/.test(passwordField);
+                var isNumberMet = /\d/.test(passwordField);
+
+                if (isMinLengthMet) {
+                    minLength.style.display = "none";
+                } else {
+                    minLength.style.display = "block";
+                    event.preventDefault();
+                }
+
+                if (isUppercaseMet) {
+                    uppercaseReq.style.display = "none";
+                } else {
+                    uppercaseReq.style.display = "block";
+                    event.preventDefault();
+                }
+
+                if (isLowercaseMet) {
+                    lowercaseReq.style.display = "none";
+                } else {
+                    lowercaseReq.style.display = "block";
+                    event.preventDefault();
+                }
+
+                if (isNumberMet) {
+                    numberReq.style.display = "none";
+                } else {
+                    numberReq.style.display = "block";
+                    event.preventDefault();
+                }
+
+                if (passwordField !== confirmPasswordField) {
+                    errorMessage.style.display = "block";
+                    event.preventDefault();
+                    return false;
+                } else {
+                    errorMessage.style.display = "none";
+                    return true;
+                }
             }
-            errorElement.style.display = "none";
-            return true;
-        }
+
+            document.querySelector('.registration-form').addEventListener('submit', validateConfirmPassword);
+        });
     </script>
-</body>
+  </body>
 </html>

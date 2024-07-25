@@ -1,44 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/sign-in-page.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <title>Sign In</title>
-</head>
-<body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="../assets/css/sign-in-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito Sans:wght@700&display=swap"
+    />
+
+    <style>
+      @font-face {
+        font-family: "Font Awesome 5 Free";
+        src: url("../assets/public/Font Awesome 5 Free-Regular-400.otf");
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
     <div class="sign-in-page">
-        <div class="form-container">
-            <div class="form-content">
-                <a href="#" class="logo">LOGO</a>
-                <h1>Sign in</h1>
-                <p>If you don’t have an account <a href="/templates/register-page.html" class="register-here">Register here!</a></p>
-                <form class="sign-in-form">
-                    <div class="input-field">
-                        <img src="../assets/public/message-1.svg" alt="" class="icon">
-                        <input type="text" placeholder="Enter your email address">
-                    </div>
-                    <div class="input-field">
-                        <img src="../assets/public/padlock-1.svg" alt="" class="icon">
-                        <input type="password" placeholder="Enter your Password">
-                    </div>
-                    <div class="options">
-                        <label class="checkbox-container">
-                            <input type="checkbox">
-                            Remember me
-                        </label>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="login-button">Login</button>
-                </form>
+      <div class="logo-parent">
+        <a class="logo">LOGO</a>
+        <div class="frame-wrapper">
+          <div class="sign-in-title-container-parent">
+            <div class="sign-in-title-container">
+              <div class="sign-in-parent">
+                <a class="sign-in" href="/templates/sign-in-page.html">Sign in</a>
+                <div class="if-you-dont-have-an-account-parent">
+                  <div class="if-you-dont">If you don't have an account</div>
+                  <div class="you-can-register-container">
+                    <span class="you-can">You can </span>
+                    <span class="register-here">Register here !</span>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="email-parent">
+              <div class="email">Email</div>
+              <div class="email-input-container">
+                <div class="email-input-box">
+                  <img
+                    class="message-1-icon"
+                    alt=""
+                    src="../assets/public/message-1.svg"
+                  />
+                </div>
+                <input
+                  class="enter-your-email"
+                  placeholder="Enter your email address"
+                  type="text"
+                />
+              </div>
+              <div class="email-input-border"></div>
+            </div>
+            <div class="frame-parent">
+              <div class="password-wrapper">
+                <div class="password">Password</div>
+              </div>
+              <div class="password-input-container-parent">
+                <div class="password-input-container">
+                  <div class="frame-group">
+                    <div class="padlock-1-wrapper">
+                      <img
+                        class="padlock-1-icon"
+                        loading="lazy"
+                        alt=""
+                        src="../assets/public/padlock-1.svg"
+                      />
+                    </div>
+                    <div class="enter-your-password">Enter your Password</div>
+                  </div>
+                  <img
+                    class="invisible-1-icon"
+                    loading="lazy"
+                    alt=""
+                    src="../assets/public/invisible-1.svg"
+                  />
+                </div>
+                <div class="password-input-border"></div>
+              </div>
+              <div class="remember-forgot-password">
+                <div class="remember-forgot-container">
+                  <div class="password-input-box">
+                    <input class="frame-input" type="checkbox" />
+
+                    <div class="remember-me">Remember me</div>
+                  </div>
+                  <div class="forgot-password">Forgot Password ?</div>
+                </div>
+              </div>
+            </div>
+            <div class="password-field">
+              <button class="rectangle-parent">
+                <div class="frame-child"></div>
+                <a class="login">Login</a>
+              </button>
+              <div class="password-field-inner">
+                <div class="or-continue-with-parent">
+                  <div class="or-continue-with">or continue with</div>
+                  <div class="social-logins">
+                    <img
+                      class="social-logins-child"
+                      loading="lazy"
+                      alt=""
+                      src="../assets/public/group-13.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="branding">
-            <img src="../assets/public/saly10@2x.png" alt="" class="brand-logo">
-            <h1>Learntelligence</h1>
-            <p>Empower Learning with AI</p>
+      </div>
+      <div class="sign-in-page-inner">
+        <div class="rectangle-group">
+          <div class="frame-item"></div>
+          <div class="saly-logo">
+            <img
+              class="saly-10-icon"
+              loading="lazy"
+              alt=""
+              src="../assets/public/saly10@2x.png"
+            />
+          </div>
+          <div class="saly-description">
+            <h1 class="learntelligence">Learntelligence</h1>
+            <div class="empower-learning-with">Empower Learning with AI</div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
