@@ -72,10 +72,12 @@
                 <div class="circle-team-form-child"></div>
                 <input
                   class="marketing-team1"
-                  placeholder="Marketing Team"
+                  id="circle-name-input"
+                  placeholder="Ex: Marketing Team"
                   type="text"
                 />
               </div>
+              <span class="invalid-message" id="name-message">Name isn't filled</span>
             </div>
             <div class="description-area-form">
               <div class="circle-description-form">
@@ -86,21 +88,50 @@
                   <div class="description-default-form-child"></div>
                   <input
                     class="learning-group-for"
-                    placeholder="Learning Group for Marketing Team at ABC Corp"
+                    id="circle-description-input"
+                    placeholder="Ex: Learning Group for Marketing Team at ABC Corp"
                     type="text"
                   />
                 </div>
+                <span class="invalid-message" id="description-message">Description isn't filled</span>
               </div>
             </div>
           </div>
         </section>
         <div class="create-button-area">
-          <button class="button-create-circle">
+          <button class="button-create-circle" onclick="submitCircle()">
             <div class="bg47"></div>
             <div class="create-circle1">Create Circle</div>
           </button>
         </div>
       </footer>
     </div>
+    <script>
+      function submitCircle() {
+        var circleName = document.getElementById("circle-name-input").value;
+        var circleDescription = document.getElementById("circle-description-input").value;
+        var nameMessage = document.getElementById("name-message");
+        var descriptionMessage = document.getElementById("description-message");
+        var flag = false;
+
+        if (circleName == "") {
+          flag = true;
+          nameMessage.style.display = "block";
+        } else {
+          nameMessage.style.display = "none";
+        }
+        
+        if (circleDescription == "") {
+          flag = true;
+          descriptionMessage.style.display = "block";
+        } else {
+          descriptionMessage.style.display = "none";
+        }
+
+        if (flag) {
+          return flag;
+        }
+      }
+    </script>
   </body>
 </html>

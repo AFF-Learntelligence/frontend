@@ -93,6 +93,7 @@
 }
 .circle-team-form-child,
 .marketing-team1 {
+  flex-grow: 1;
   background-color: transparent;
   position: relative;
   max-width: 100%;
@@ -156,6 +157,7 @@
 }
 .description-default-form-child,
 .learning-group-for {
+  flex-grow: 1;
   background-color: transparent;
   position: relative;
   max-width: 100%;
@@ -313,6 +315,22 @@
   font-size: 44px;
   color: #fff;
   font-family: Poppins;
+}
+.invalid-message {
+  color: red;
+  font-size: 12px;
+  display: none; 
+  margin-top: 5px;
+  text-align: left;
+}
+input::placeholder {
+  color: #9d9b9b; 
+  opacity: 0.5;    
+}
+
+input {
+  color: #000000; 
+  font-weight: bold;
 }
 @media screen and (max-width: 825px) {
   .create-circle {

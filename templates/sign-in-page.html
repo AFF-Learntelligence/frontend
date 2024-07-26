@@ -50,12 +50,12 @@
           <div class="sign-in-title-container-parent">
             <div class="sign-in-title-container">
               <div class="sign-in-parent">
-                <a class="sign-in" href="/templates/sign-in-page.html">Sign in</a>
+                <a class="sign-in">Sign in</a>
                 <div class="if-you-dont-have-an-account-parent">
                   <div class="if-you-dont">If you don't have an account</div>
                   <div class="you-can-register-container">
                     <span class="you-can">You can </span>
-                    <span class="register-here">Register here !</span>
+                    <a class="register-here" href="/templates/register-page.html">Register here!</a>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,11 @@
                         src="../assets/public/padlock-1.svg"
                       />
                     </div>
-                    <div class="enter-your-password">Enter your Password</div>
+                    <input
+                        class="enter-your-password"
+                        placeholder="Enter your Password"
+                        type="password"
+                    />
                   </div>
                   <img
                     class="invisible-1-icon"

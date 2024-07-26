@@ -74,6 +74,7 @@
 }
 .enter-your-email {
   width: calc(100% - 17px);
+  flex-grow: 1;
   border: 0;
   outline: 0;
   font-family: Poppins;
@@ -89,6 +90,7 @@
   padding: 0;
 }
 .email-input-container {
+  flex-grow: 1;
   width: 226px;
   display: flex;
   flex-direction: row;
@@ -138,7 +140,20 @@
   padding: 4px 0 0;
 }
 .enter-your-password {
+  width: calc(100% - 17px);
+  border: 0;
+  outline: 0;
+  font-family: Poppins;
+  font-size: 16px;
+  background-color: transparent;
+  height: 25px;
+  flex: 1;
   position: relative;
+  color: #000842;
+  text-align: left;
+  display: inline-block;
+  min-width: 119px;
+  padding: 0;
 }
 .frame-group {
   display: flex;
@@ -166,7 +181,7 @@
   align-self: stretch;
   height: 2px;
   position: relative;
-  background-color: #999;
+  background-color: #000842;
 }
 .password-input-container-parent {
   align-self: stretch;
