@@ -316,13 +316,6 @@
   color: #fff;
   font-family: Poppins;
 }
-.invalid-message {
-  color: red;
-  font-size: 12px;
-  display: none; 
-  margin-top: 5px;
-  text-align: left;
-}
 input::placeholder {
   color: #9d9b9b; 
   opacity: 0.5;    
