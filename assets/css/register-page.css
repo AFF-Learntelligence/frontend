@@ -291,7 +291,7 @@ ul.validation-list {
   list-style-type: none; 
   margin: 0;
 }
-.confirm-password-error{
+.password-error{
   color: red;
   font-size: 12px;
   display: none; 

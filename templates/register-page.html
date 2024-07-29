@@ -46,7 +46,7 @@
     <div class="register-page">
       <div class="main">
         <a class="logo4">LOGO</a>
-        <form class="registration-form" onsubmit="validateConfirmPassword(event)">
+        <form class="registration-form" id="registrationForm">
             <div class="password-fields-wrapper">
             <div class="password-fields">
                 <div class="login-info">
@@ -60,29 +60,32 @@
                 </div>
                 </div>
                     <div class="email-parent2">
-                    <div class="email4">Email</div>
-                    <div class="email-input">
-                        <div class="email-message">
-                        <img
-                            class="message-1-icon4"
-                            alt=""
-                            src="../assets/public/message-1.svg"
-                        />
+                      <div class="email4">Email</div>
+                        <div class="email-input">
+                            <div class="email-message">
+                            <img
+                                class="message-1-icon4"
+                                alt=""
+                                src="../assets/public/message-1.svg"
+                            />
+                            </div>
+                            <input
+                            class="email-input-value"
+                            id="email-input-value"
+                            placeholder="Enter your email address"
+                            type="email"
+                            required
+                            />
                         </div>
-                        <input
-                        class="email-input-value"
-                        placeholder="Enter your email address"
-                        type="email"
-                        required
-                        />
-                    </div>
-                    <div class="instance-child2"></div>
-                    </div>
+                      <div class="instance-child2"></div>
+                      <span class="password-error" id="email-registered-message">Email already in use</span>
+                      </div>
                     <div class="instance-group">
                     <div class="username-parent">
                         <div class="username">Name</div>
                         <input
                         class="name-input-value"
+                        id="name-input-value"
                         placeholder="Enter your Name"
                         type="text"
                         required
@@ -113,6 +116,7 @@
                         </div>
                         <input
                             class="password-input-value"
+                            id="password-input-value"
                             placeholder="Enter your Password"
                             type="password"
                             required
@@ -145,6 +149,7 @@
                         </div>
                         <input
                             class="password-confirm-input-value"
+                            id="password-confirm-input-value"
                             placeholder="Confirm your Password"
                             type="password"
                             required
@@ -154,7 +159,7 @@
                     <div class="register-call-to-action">
                         <div class="register-call-to-action-child"></div>
                     </div>
-                    <span class="confirm-password-error">Password do not match.</span>
+                    <span class="password-error" id="confirm-password-error">Password do not match.</span>
                     </div>
                     <div class="register-button-wrapper">
                     <button type="submit" class="rectangle-parent4">
@@ -185,62 +190,101 @@
       </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function validateConfirmPassword(event) {
-                var passwordField = document.getElementsByClassName("password-input-value")[0].value;
-                var confirmPasswordField = document.getElementsByClassName("password-confirm-input-value")[0].value;
+        var form = document.getElementById("registrationForm");
 
-                var minLength = document.getElementById('min-length')
-                var uppercaseReq = document.getElementById('uppercase')
-                var lowercaseReq = document.getElementById('lowercase')
-                var numberReq = document.getElementById('number')
-                var errorMessage = document.getElementsByClassName("confirm-password-error")[0];
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const password = document.getElementById('password-input-value').value;
+          const confirmPassword = document.getElementById('password-confirm-input-value').value;
 
-                var isMinLengthMet = passwordField.length >= 8;
-                var isUppercaseMet = /[A-Z]/.test(passwordField);
-                var isLowercaseMet = /[a-z]/.test(passwordField);
-                var isNumberMet = /\d/.test(passwordField);
+          if (validatePassword(password) && validateConfirmPassword(password, confirmPassword)) {
+            document.getElementById("email-registered-message").style.display = "none"
+            const email = document.getElementById('email-input-value').value;
+            const name = document.getElementById('name-input-value').value;
+            submitForm(email, password, name);
+          }
+        })
+        
+        function validatePassword(password) {
+          var minLength = document.getElementById('min-length')
+          var uppercaseReq = document.getElementById('uppercase')
+          var lowercaseReq = document.getElementById('lowercase')
+          var numberReq = document.getElementById('number')
 
-                if (isMinLengthMet) {
-                    minLength.style.display = "none";
-                } else {
-                    minLength.style.display = "block";
-                    event.preventDefault();
-                }
+          if (password.length < 8) {
+            minLength.style.display = "block";
+            return false;
+          } else {
+            minLength.style.display = "none";
+          }
 
-                if (isUppercaseMet) {
-                    uppercaseReq.style.display = "none";
-                } else {
-                    uppercaseReq.style.display = "block";
-                    event.preventDefault();
-                }
+          if (!/[A-Z]/.test(password)) {
+            uppercaseReq.style.display = "block"
+            return false;
+          } else {
+            uppercaseReq.style.display = "none"
+          }
 
-                if (isLowercaseMet) {
-                    lowercaseReq.style.display = "none";
-                } else {
-                    lowercaseReq.style.display = "block";
-                    event.preventDefault();
-                }
+          if (!/[a-z]/.test(password)) {
+            lowercaseReq.style.display = "block"
+            return false;
+          } else {
+            lowercaseReq.style.display = "none"
+          }
 
-                if (isNumberMet) {
-                    numberReq.style.display = "none";
-                } else {
-                    numberReq.style.display = "block";
-                    event.preventDefault();
-                }
+          if (!/\d/.test(password)) {
+            numberReq.style.display = "block"
+            return false;
+          } else {
+            numberReq.style.display = "none"
+          }
 
-                if (passwordField !== confirmPasswordField) {
-                    errorMessage.style.display = "block";
-                    event.preventDefault();
-                    return false;
-                } else {
-                    errorMessage.style.display = "none";
-                    return true;
-                }
+          return true;
+        }
+
+        function validateConfirmPassword(password, confirmPassword) {
+          const confirmErrorMessage = document.getElementById("confirm-password-error");
+
+          if (password !== confirmPassword) {
+              confirmErrorMessage.style.display = "block";
+              return false;
+          } else {
+              confirmErrorMessage.style.display = "none";
+              return true;
+          }
+        }
+    
+        function submitForm(email, password, name) {
+          const data = {
+            "email": email,
+            "password" : password,
+            "name": name
+          }
+
+          fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status == "201") {
+              window.location.href = '/templates/sign-in-page.html'
+            } else {
+              if (data.message === "Email already registered!") {
+                document.getElementById("email-registered-message").style.display = "block";
+              } else {
+                alert(data.status)
+                alert(data.message)
+              }
             }
-
-            document.querySelector('.registration-form').addEventListener('submit', validateConfirmPassword);
-        });
+          })
+          .catch((error) => {
+            alert('An error occurred during signup: ' + error.message);
+          });
+        }
     </script>
   </body>
 </html>
