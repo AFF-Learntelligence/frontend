@@ -48,7 +48,7 @@
         <div class="content-header-child2"></div>
         <h1 class="create-circle">Create Circle</h1>
       </div>
-      <form>
+      <form id="form-creation">
         <footer class="content6">
           <section class="rectangle2"></section>
           <section class="circle-form">
@@ -100,7 +100,7 @@
             </div>
           </section>
           <div class="create-button-area">
-            <button class="button-create-circle">
+            <button class="button-create-circle" type="submit">
               <div class="bg47"></div>
               <div class="create-circle1">Create Circle</div>
             </button>
@@ -108,5 +108,47 @@
         </footer>
       </form>
     </div>
+    <script>
+      const form = document.getElementById('form-creation');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('circle-name-input').value;
+        const description = document.getElementById('circle-description-input').value;
+
+        submitForm(name, description);
+      })
+
+      function submitForm(name, description) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        const data = {
+          'name': name,
+          'description': description
+        }
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/circle/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authentication': "Bearer " + keyAuth
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '201') {
+            alert(data.message);
+            alert(data.invitationLink);
+          } else {
+            alert(data.status);
+            alert(data.message);
+          }
+        })
+        .catch((error) => {
+          alert('An error occurred during creation: ' + error.message);
+        })
+      }
+    </script>
   </body>
 </html>
