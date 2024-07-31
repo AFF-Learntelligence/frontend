@@ -65,6 +65,13 @@
   flex-shrink: 0;
   object-fit: contain;
 }
+.invalid-credentials {
+  color: red;
+  font-size: 12px;
+  display: none; 
+  margin-top: 5px;
+  text-align: left;
+}
 .email-input-box {
   display: flex;
   flex-direction: column;

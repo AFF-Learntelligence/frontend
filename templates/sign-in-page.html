@@ -44,7 +44,7 @@
   </head>
   <body>
     <div class="sign-in-page">
-        <form>
+        <form id="sign-in-form">
             <div class="logo-parent">
               <a class="logo">LOGO</a>
               <div class="frame-wrapper">
@@ -73,12 +73,14 @@
                       </div>
                       <input
                         class="enter-your-email"
+                        id="email-input-value"
                         placeholder="Enter your email address"
-                        type="text"
+                        type="email"
                         required
                       />
                     </div>
                     <div class="email-input-border"></div>
+                    <span class="invalid-credentials" id="invalid-credentials">Invalid email or password.</span>
                   </div>
                   <div class="frame-parent">
                     <div class="password-wrapper">
@@ -97,6 +99,7 @@
                           </div>
                           <input
                               class="enter-your-password"
+                              id="password-input-value"
                               placeholder="Enter your Password"
                               type="password"
                               required
@@ -114,7 +117,7 @@
                     <div class="remember-forgot-password">
                       <div class="remember-forgot-container">
                         <div class="password-input-box">
-                          <input class="frame-input" type="checkbox" />
+                          <input class="frame-input" id="remember-me-input" type="checkbox" />
       
                           <div class="remember-me">Remember me</div>
                         </div>
@@ -123,7 +126,7 @@
                     </div>
                   </div>
                   <div class="password-field">
-                    <button class="rectangle-parent">
+                    <button class="rectangle-parent" type="submit">
                       <div class="frame-child"></div>
                       <a class="login">Login</a>
                     </button>
@@ -163,5 +166,75 @@
         </div>
       </div>
     </div>
+    <script>
+      var form = document.getElementById('sign-in-form');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('email-input-value').value;
+        const password = document.getElementById('password-input-value').value;
+        const remember = document.getElementById('remember-me-input').checked;
+        
+        submitForm(email, password);
+        document.getElementById('invalid-credentials').style.display = 'none';
+        rememberMe(email, password, remember);
+      })
+
+      function submitForm(email, password) {
+        const data = {
+          'email': email,
+          'password': password
+        }
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            localStorage.setItem('keyLearntelligence', data.idToken)
+            window.location.href = '/templates/user-landing-page.html'
+          } else {
+            if (data.status == '401') {
+            document.getElementById('invalid-credentials').style.display = 'block';
+            } else {
+              alert(data.status);
+              alert(data.message);
+            }
+            return false;
+          }
+        })
+        .catch((error) => {
+          alert('An error occurred during login: ' + error.message);
+        });
+        
+        return true;
+      }
+
+      function rememberMe(email, password, remember) {
+        if (remember) {
+          localStorage.setItem('emailLearntelligence', email);
+          localStorage.setItem('passwordLearntelligence', password);
+          localStorage.setItem('rememberLearntelligence', true);
+        } else {
+          localStorage.removeItem('emailLearntelligence');
+          localStorage.removeItem('passwordLearntelligence');
+          localStorage.removeItem('rememberLearntelligence');
+        }
+      }
+
+      window.onload = function() {
+        const remember = localStorage.getItem('rememberLearntelligence');
+        if (remember) {
+          document.getElementById('email-input-value').value = localStorage.getItem('emailLearntelligence');
+          document.getElementById('password-input-value').value = localStorage.getItem('passwordLearntelligence');
+          document.getElementById('remember-me-input').checked = true;
+        }
+      };
+    </script>
   </body>
 </html>
