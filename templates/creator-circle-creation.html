@@ -123,7 +123,7 @@
         const keyAuth = localStorage.getItem('keyLearntelligence');
 
         const data = {
-          'name': name,
+          'circleName': name,
           'description': description
         }
 
@@ -131,7 +131,7 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authentication': "Bearer " + keyAuth
+            'Authorization': "Bearer " + keyAuth
           },
           body: JSON.stringify(data)
         })
