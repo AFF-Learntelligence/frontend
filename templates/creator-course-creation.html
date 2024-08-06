@@ -43,6 +43,7 @@
     </style>
   </head>
   <body>
+    <form>
     <div class="creator-course-creation">
       <header class="content-header6">
         <div class="content-header-child4"></div>
@@ -71,8 +72,10 @@
               <div class="example-description-child"></div>
               <input
                 class="example-python-programming"
+                id="name-input"
                 placeholder="Example: Python Programming Basics"
                 type="text"
+                required
               />
             </div>
           </div>
@@ -85,8 +88,10 @@
                 <div class="profile-label-child"></div>
                 <input
                   class="example-a-computer"
+                  id="learner-profile-input"
                   placeholder="Example: A Computer Science Freshman"
                   type="text"
+                  required
                 />
               </div>
             </div>
@@ -99,8 +104,10 @@
               <div class="frame-child20"></div>
               <input
                 class="example-python-programming1"
+                id="description-input"
                 placeholder="Example: Python Programming Basics is a foundational concept about...."
                 type="text"
+                required
               />
             </div>
           </div>
@@ -117,6 +124,7 @@
                 <div class="link-description-child"></div>
                 <input
                   class="example-python-programming2"
+                  id="youtube-link-input"
                   placeholder="Example: Python Programming Basics"
                   type="text"
                 />
@@ -146,7 +154,7 @@
         <section class="set-outline-parent">
           <h2 class="set-outline">Set Outline</h2>
           <div class="chapters-parent">
-            <form class="chapters">
+            <div class="chapters">
               <div class="chapters-child"></div>
               <div class="length-dropdown-wrapper">
                 <div class="length-dropdown">
@@ -154,11 +162,12 @@
                   <div class="rectangle-parent19">
                     <div class="frame-child21"></div>
                     <div class="introduction-chapters">
-                      <div class="introduction-5-chapters">
-                        Introduction (5 Chapters)
-                      </div>
+                      <select id="level" class="introduction-5-chapters">
+                        <option value="5">Introduction (5 chapters)</option>
+                        <option value="10">Intermediate (10 chapters)</option>
+                        <option value="15">Advanced (15 chapters)</option>
+                      </select>
                     </div>
-                    <div class="div35"></div>
                   </div>
                 </div>
               </div>
@@ -166,15 +175,15 @@
                 <div class="outline-parent">
                   <div class="outline">Outline</div>
                   <div class="generate-buttons">
-                    <button class="button8">
-                      <div class="bg59"></div>
-                      <div class="generate-chapters">Generate Chapters</div>
-                    </button>
-                    <button class="button9">
+                    <button class="button9" type="button" id="chapter-manual">
                       <div class="bg60"></div>
                       <div class="add-chapters-manually">
                         Add Chapters Manually
                       </div>
+                    </button>
+                    <button class="button8" type="button" id="chapter-generate">
+                      <div class="bg59"></div>
+                      <div class="generate-chapters">Generate Chapters</div>
                     </button>
                   </div>
                 </div>
@@ -188,8 +197,10 @@
                     <div class="chapter-example-labels-child"></div>
                     <input
                       class="example-introduction-to"
+                      id="chapter-input-1"
                       placeholder="Example: Introduction to Python"
                       type="text"
+                      required
                     />
                   </div>
                 </div>
@@ -203,8 +214,10 @@
                     <div class="frame-child22"></div>
                     <input
                       class="example-variables-and"
+                      id="chapter-input-2"
                       placeholder="Example: Variables and Data Types"
                       type="text"
+                      required
                     />
                   </div>
                 </div>
@@ -218,8 +231,10 @@
                     <div class="frame-child23"></div>
                     <input
                       class="example-control-flow"
+                      id='chapter-input-3'
                       placeholder="Example: Control Flow"
                       type="text"
+                      required
                     />
                   </div>
                 </div>
@@ -233,28 +248,172 @@
                     <div class="frame-child24"></div>
                     <input
                       class="example-functions"
+                      id='chapter-input-4'
                       placeholder="Example: Functions"
                       type="text"
+                      required
                     />
                   </div>
                 </div>
               </div>
               <div class="chapter-name">
                 <div class="chapter-name-label">
-                  <div class="chapter-5">Chapter 5</div>
+                  <div class="chapter-class">Chapter 5</div>
                 </div>
                 <div class="chapter-name-example">
                   <div class="chapter-name-example-child"></div>
                   <input
                     class="example-basic-data"
+                    id='chapter-input-5'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-6">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 6</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-6'
                     placeholder="Example: Basic Data Structures"
                     type="text"
                   />
                 </div>
               </div>
-            </form>
+              <div class="chapter-name" id="chapter-7">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 7</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-7'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+                <div class="chapter-name" id="chapter-8">
+                  <div class="chapter-name-label">
+                    <div class="chapter-class">Chapter 8</div>
+                  </div>
+                  <div class="chapter-name-example">
+                    <div class="chapter-name-example-child"></div>
+                    <input
+                      class="example-basic-data"
+                      id='chapter-input-8'
+                      placeholder="Example: Basic Data Structures"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-9">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 9</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-9'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-10">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 10</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-10'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-11">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 11</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-11'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-12">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 12</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-12'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-13">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 13</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-13'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-14">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 14</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-14'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="chapter-name" id="chapter-15">
+                <div class="chapter-name-label">
+                  <div class="chapter-class">Chapter 15</div>
+                </div>
+                <div class="chapter-name-example">
+                  <div class="chapter-name-example-child"></div>
+                  <input
+                    class="example-basic-data"
+                    id='chapter-input-15'
+                    placeholder="Example: Basic Data Structures"
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div>
             <div class="generate-course-button">
-              <button class="button-generate-course2">
+              <button class="button-generate-course2" id="generate-button" type="submit">
                 <div class="bg61"></div>
                 <div class="generate-course">Generate Course</div>
               </button>
@@ -263,5 +422,122 @@
         </section>
       </main>
     </div>
+    </form>
+    <script>
+      window.onload = function() {
+        toggleChapters(5);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const generateButton = document.getElementById('generate-button');
+        const levelElement = document.getElementById('level');
+        const manualChapter = document.getElementById('chapter-manual');
+        const generateChapter = document.getElementById('chapter-generate');
+        var isGenerate = false;
+
+        // const courseTitle = document.getElementById('name-input').value;
+        // const courseLearnerProfile = document.getElementById('learner-profile-input').value;
+        // const courseDescription = document.getElementById('description-input').value;
+        // const courseLength = levelElement.value;
+
+        manualChapter.addEventListener('click', function() {
+          const courseTitle = document.getElementById('name-input').value;
+          const courseLength = levelElement.value;
+          this.style.backgroundColor = 'rgba(12, 33, 193, 0.1)';
+          generateChapter.style.backgroundColor = 'transparent';
+          isGenerate = false;
+          toggleFillChapters(courseTitle, courseLength, isGenerate);
+        })
+
+        generateChapter.addEventListener('click' , function() {
+          const courseTitle = document.getElementById('name-input').value;
+          const courseLength = levelElement.value;
+          this.style.backgroundColor = 'rgba(12, 33, 193, 0.1)';
+          manualChapter.style.backgroundColor = 'transparent'
+          isGenerate = true;
+          toggleFillChapters(courseTitle, courseLength, isGenerate);
+        })
+
+        levelElement.addEventListener('change', function() { 
+          const courseTitle = document.getElementById('name-input').value;
+          const courseLength = levelElement.value;
+          toggleChapters(this.value) 
+          toggleFillChapters(courseTitle, courseLength, isGenerate)
+        })
+
+        generateButton.addEventListener('click', function() {
+          
+        })
+      })
+
+      function toggleChapters(level) {
+        for (let i = 6; i <= 15; i++) {
+          const chapter = document.getElementById('chapter-' + i);
+          document.getElementById('chapter-' + i).style.display = 'none';
+          document.getElementById('chapter-input-' + i).required = false;
+        }
+
+        for (let i = 6; i <= level; i++) {
+          document.getElementById('chapter-' + i).style.display = 'block';
+          document.getElementById('chapter-input-' + i).required = true;
+        }
+      }
+
+      function toggleFillChapters(courseTitle, courseLength, isGenerate) {
+        if (isGenerate) {
+          for (let i = 1; i <= courseLength; i++) {
+            document.getElementById('chapter-input-' + i).value = 'Loading...'
+          }
+
+          const keyAuth = localStorage.getItem('keyLearntelligence');
+
+          const data = {
+            'title': courseTitle,
+            'length': courseLength
+          }
+
+          fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/chapters/generate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': "Bearer " + keyAuth
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json()
+          .then(data => {
+            if (data.status == '200') {
+              console.log(data)
+              alert(data.message);
+              const chapters = data.data.data;
+              if (Array.isArray(chapters)) {
+                chapters.forEach(chapter => {
+                  const inputField = document.getElementById('chapter-input-' + chapter.chapter);
+                  if (inputField) {
+                    inputField.value = chapter.title;
+                  } else {
+                    console.error(`No input field found for chapter ${chapter.chapter}`);
+                  }
+                });
+              } else {
+                console.error('Expected an array but got:', chapters);
+                alert('Unexpected data format received from server.');
+              }
+            } else if (data.status == '500') {
+              alert(data.message);
+            } else if (data.status == '400') {
+              alert(data.message);
+            } else { // unauthorized, not logged in, user not found
+              alert(data.message);
+              window.location.href = '/templates/sign-in-page.html';
+            }
+          }))
+        } else {
+          for (let i = 1; i <= 15; i++) {
+            document.getElementById('chapter-input-' + i).value = '';
+          } 
+        }
+      }
+    </script>
   </body>
 </html>
