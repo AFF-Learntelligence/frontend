@@ -508,7 +508,6 @@
           .then(data => {
             if (data.status == '200') {
               console.log(data)
-              alert(data.message);
               const chapters = data.data.data;
               if (Array.isArray(chapters)) {
                 chapters.forEach(chapter => {
