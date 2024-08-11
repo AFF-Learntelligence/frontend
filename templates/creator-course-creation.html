@@ -180,6 +180,23 @@
                   </div>
                 </div>
               </div>
+              <div class="chapters-inner">
+                <div class="outline-parent">
+                  <div class="outline">Language</div>
+                  <div class="generate-buttons">
+                    <button class="button9" type="button" id="en">
+                      <div class="bg60"></div>
+                      <div class="add-chapters-manually">
+                        English
+                      </div>
+                    </button>
+                    <button class="button8" type="button" id="id">
+                      <div class="bg59"></div>
+                      <div class="generate-chapters">Indonesia</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
               <div class="chapter-headers">
                 <div class="chapter-examples">
                   <div class="chapter-label">
@@ -426,6 +443,9 @@
         const manualChapter = document.getElementById('chapter-manual');
         const generateChapter = document.getElementById('chapter-generate');
         const fileInput = document.getElementById('file-upload-input');
+        const enButton = document.getElementById('en');
+        const idButton = document.getElementById('id');
+        var lang = 'en';
         var fileUrl = '';
         var isGenerate = false;
 
@@ -452,6 +472,18 @@
           toggleFillChapters(courseTitle, courseLength, isGenerate);
         })
 
+        enButton.addEventListener('click', function() {
+          this.style.backgroundColor = 'rgba(12, 33, 193, 0.1)';
+          idButton.style.backgroundColor = 'transparent';
+          lang = 'en';
+        })
+
+        idButton.addEventListener('click', function() {
+          this.style.backgroundColor = 'rgba(12, 33, 193, 0.1)';
+          enButton.style.backgroundColor = 'transparent';
+          lang = 'id';
+        })
+
         fileInput.addEventListener('change', function() {
           selectedFile = fileInput.files[0];
           document.getElementById('file-error-message').style.display = 'none';
@@ -469,7 +501,6 @@
           toggleChapters(this.value) 
           toggleFillChapters(courseTitle, courseLength, isGenerate)
         })
-
 
         generateButton.addEventListener('click', function() {
           
