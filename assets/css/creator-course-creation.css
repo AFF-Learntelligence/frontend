@@ -393,6 +393,13 @@
   justify-content: flex-start;
   padding: 0 2px;
 }
+.file-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: left;
+  display: none;
+}
 .upload-icon {
   width: 18px;
   height: 18px;
