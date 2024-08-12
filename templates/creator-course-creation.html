@@ -79,23 +79,6 @@
               />
             </div>
           </div>
-          <div class="learner">
-            <div class="learner-example">
-              <div class="profile-example">
-                <div class="learner-profile">Learner Profile</div>
-              </div>
-              <div class="profile-label">
-                <div class="profile-label-child"></div>
-                <input
-                  class="example-a-computer"
-                  id="learner-profile-input"
-                  placeholder="Example: A Computer Science Freshman"
-                  type="text"
-                  required
-                />
-              </div>
-            </div>
-          </div>
           <div class="name-example1">
             <div class="course-description-wrapper">
               <div class="course-description2">Course Description</div>
@@ -109,6 +92,23 @@
                 type="text"
                 required
               />
+            </div>
+          </div>
+          <div class="chapters-inner">
+            <div class="outline-parent">
+              <div class="outline">Language</div>
+              <div class="generate-buttons">
+                <button class="button9" type="button" id="en">
+                  <div class="bg60"></div>
+                  <div class="add-chapters-manually">
+                    English
+                  </div>
+                </button>
+                <button class="button8" type="button" id="id">
+                  <div class="bg59"></div>
+                  <div class="generate-chapters">Indonesia</div>
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -176,23 +176,6 @@
                     <button class="button8" type="button" id="chapter-generate">
                       <div class="bg59"></div>
                       <div class="generate-chapters">Generate Chapters</div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="chapters-inner">
-                <div class="outline-parent">
-                  <div class="outline">Language</div>
-                  <div class="generate-buttons">
-                    <button class="button9" type="button" id="en">
-                      <div class="bg60"></div>
-                      <div class="add-chapters-manually">
-                        English
-                      </div>
-                    </button>
-                    <button class="button8" type="button" id="id">
-                      <div class="bg59"></div>
-                      <div class="generate-chapters">Indonesia</div>
                     </button>
                   </div>
                 </div>
@@ -449,11 +432,6 @@
         var fileUrl = '';
         var isGenerate = false;
 
-        // const courseTitle = document.getElementById('name-input').value;
-        // const courseLearnerProfile = document.getElementById('learner-profile-input').value;
-        // const courseDescription = document.getElementById('description-input').value;
-        // const courseLength = levelElement.value;
-
         manualChapter.addEventListener('click', function() {
           const courseTitle = document.getElementById('name-input').value;
           const courseLength = levelElement.value;
@@ -503,7 +481,29 @@
         })
 
         generateButton.addEventListener('click', function() {
-          
+          const pdfUrls = fileUrl ? [fileUrl] : [];
+          const youtubeLink = document.getElementById('youtube-link-input').value; 
+          const youtubeUrls = youtubeLink ? [youtubeLink] : [];
+          const courseLength = levelElement.value;
+          const content = [];
+          for (let chapter = 1; chapter <= courseLength; chapter++) {
+            const title = document.getElementById('chapter-input-' + chapter).value;
+            content.push({
+              'chapter': chapter,
+              'title': title
+            })
+          }
+
+          const data = {
+            'name': document.getElementById('name-input').value,
+            'description': document.getElementById('description-input').value,
+            'lang': lang,
+            'pdfUrls': pdfUrls,
+            'youtubeUrls': youtubeUrls,
+            'content': content
+          }
+
+          submitForm(data);
         })
       })
 
@@ -586,7 +586,6 @@
           .then(response => response.json()
           .then(data => {
             if (data.status == '200') {
-              console.log(data)
               const chapters = data.data.data;
               if (Array.isArray(chapters)) {
                 chapters.forEach(chapter => {
@@ -615,6 +614,32 @@
             document.getElementById('chapter-input-' + i).value = '';
           } 
         }
+      }
+
+      function submitForm(data) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/create', {
+          method: 'POST',
+          headers: {  
+              'Content-Type': 'application/json',
+              'Authorization': "Bearer " + keyAuth
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '201') {
+            alert(data.message); // TODO: redirect to correct page
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else if (data.status == '400') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
       }
     </script>
   </body>
