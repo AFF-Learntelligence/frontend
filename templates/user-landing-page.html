@@ -450,7 +450,7 @@
         const joinCircleButton = document.getElementById('join-circle-button');
         const invitationInput = document.getElementById('invitation-link');
 
-        invitationInput.addEventListener('change', function() {
+        invitationInput.addEventListener('input', function() {
           document.getElementById('join-success').style.display = 'none';
           document.getElementById('join-message').style.display = 'none';
         })
@@ -473,9 +473,8 @@
 
       function joinCircle(invitationLink) {
         const keyAuth = localStorage.getItem('keyLearntelligence');
-        alert(`${invitationLink}`)
         fetch(invitationLink, {
-          method: 'PUT',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': "Bearer " + keyAuth
@@ -483,11 +482,11 @@
         }) 
         .then(response => response.json())
         .then(data => {
-          alert('barudak')
           if (data.status == '200') {
             const message = document.getElementById('join-success');
             message.textContent = data.message;
             message.style.display = 'block';
+            teamSection.innerHTML = '';
             fetchCircles();
           } else if (data.status == '404' || data.status == '500') {
             const message = document.getElementById('join-message');
@@ -513,9 +512,9 @@
         .then(response => response.json())
         .then(data => {
           if (data.status == '200') {
-            // if (data.data.role == 'creator') {
-            //   window.location.href = '/templates/creator-landing-page.html'
-            // }
+            if (data.data.role == 'creator') {
+              window.location.href = '/templates/creator-landing-page.html'
+            }
             document.getElementById('hello-user').innerText = `Hello, ${data.data.name}!`
           } else if (data.status == '500') {
             alert(data.message);
