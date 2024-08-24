@@ -69,28 +69,29 @@
           />
 
           <div class="nav-links2">
-            <a class="home2">Home</a>
-            <a class="become-a-creator2">Become a Creator</a>
-            <a class="circles2">Circles</a>
+            <a class="home2" href="">Home</a>
+            <a class="become-a-creator2" href="/templates/user-join-as-teacher.html">Become a Creator</a>
+            <a class="circles2" href="#your-circles">Circles</a>
           </div>
           <div class="login-section2">
+            <button class="logout" id="logout">Sign out</button>
             <img
               class="avatar-icon2"
               loading="lazy"
               alt=""
-              src="../assets/public/avatar@2x.png"
+              src="../assets/public/placeholder-picture.jpg"
             />
           </div>
         </div>
       </header>
-      <main class="user-landing-page-inner">
+      <main class="user-landing-page-inner" id="main">
         <section class="frame-section">
           <div class="free-courses-title-wrapper">
             <div class="free-courses-title">
               <div class="user-greeting-parent">
                 <div class="user-greeting">
                   <div class="bg17"></div>
-                  <div class="hello-user">Hello, {user}!</div>
+                  <div class="hello-user" id="hello-user"></div>
                 </div>
                 <h1 class="discover-ai-generated-container">
                   <p class="discover-ai-generated">Discover AI Generated</p>
@@ -213,7 +214,7 @@
               </div>
             </div>
           </div>
-          <div class="circles-content-wrapper">
+          <div class="circles-content-wrapper" id="your-circles">
             <div class="circles-content">
               <div class="circles-description">
                 <div class="circles-title">
@@ -235,20 +236,21 @@
                       <div class="join-elements-child"></div>
                       <input
                         class="invitation-link1"
+                        id="invitation-link"
                         placeholder="Invitation Link"
                         type="text"
                       />
                     </div>
-                    <button class="button-generate-course">
+                    <button class="button-generate-course" id="join-circle-button">
                       <div class="bg27"></div>
                       <div class="join">Join</div>
                     </button>
                   </div>
+                  <span class="join-message" id="join-message"></span>
+                  <span class="join-success" id="join-success">Joined circle successfully</span>
                 </div>
               </div>
-              <div class="marketing">
-                <div class="bg28"></div>
-                <h3 class="marketing-team">Marketing Team</h3>
+              <div class="team-section" id="team-section">
               </div>
             </div>
           </div>
@@ -431,7 +433,7 @@
                       started and verify your credentials.
                     </div>
                   </div>
-                  <button class="button6">
+                  <button class="button6" onclick="window.location.href='/templates/user-join-as-teacher.html'">
                     <div class="bg29"></div>
                     <div class="become-creator">Become Creator</div>
                   </button>
@@ -442,5 +444,142 @@
         </section>
       </main>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const logoutButton = document.getElementById('logout');
+        const joinCircleButton = document.getElementById('join-circle-button');
+        const invitationInput = document.getElementById('invitation-link');
+
+        invitationInput.addEventListener('change', function() {
+          document.getElementById('join-success').style.display = 'none';
+          document.getElementById('join-message').style.display = 'none';
+        })
+
+        logoutButton.addEventListener('click', function() {
+          localStorage.removeItem('keyLearntelligence');
+          window.location.href = '/templates/sign-in-page.html';
+        })
+
+        joinCircleButton.addEventListener('click', function() {
+          const invitationLink = document.getElementById('invitation-link').value;
+          joinCircle(invitationLink);
+        })
+      })
+
+      window.onload = function() {
+        fetchUserData();
+        fetchCircles();
+      }
+
+      function joinCircle(invitationLink) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        alert(`${invitationLink}`)
+        fetch(invitationLink, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        }) 
+        .then(response => response.json())
+        .then(data => {
+          alert('barudak')
+          if (data.status == '200') {
+            const message = document.getElementById('join-success');
+            message.textContent = data.message;
+            message.style.display = 'block';
+            fetchCircles();
+          } else if (data.status == '404' || data.status == '500') {
+            const message = document.getElementById('join-message');
+            message.textContent = data.message;
+            message.style.display = 'block';
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fetchUserData() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            // if (data.data.role == 'creator') {
+            //   window.location.href = '/templates/creator-landing-page.html'
+            // }
+            document.getElementById('hello-user').innerText = `Hello, ${data.data.name}!`
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fetchCircles() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/circles', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            const teamSection = document.getElementById('team-section');
+            if (data.data.length) {
+              data.data.forEach(circle => {
+                teamSection.appendChild(createCard(circle.circleName, circle.id));
+              });
+            } else {
+              teamSection.appendChild(createCard('No circles yet...', '#'));
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function createCard(titleText, circleId) {
+        const button = document.createElement('button');
+        button.classList.add('circle-link');
+
+        const card  = document.createElement('div');
+        card.classList.add('circle-card');
+
+        const bgDiv = document.createElement('div');
+        bgDiv.classList.add('bg28');
+
+        const title = document.createElement('h3');
+        title.classList.add('circle-title');
+        title.textContent = titleText;
+
+        card.appendChild(bgDiv);
+        card.appendChild(title);
+        button.appendChild(card);
+
+        button.addEventListener('click', function() {
+          window.location.href = `/templates/user-circle-page.html?circleId=${circleId}`;
+        });
+
+        return button;
+      }
+    </script>
   </body>
 </html>
