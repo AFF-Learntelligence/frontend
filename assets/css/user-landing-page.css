@@ -1009,7 +1009,8 @@
   outline: none; 
 }
 .circle-card {
-  width: 295.8px;
+  width: 250px;
+  height: 300px;
   border-radius: 15px;
   margin: 10px;
   background-color: #fff;
