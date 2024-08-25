@@ -68,14 +68,17 @@
           />
 
           <div class="nav-links4">
-            <a class="home4">Home</a>
+            <a class="home4" href="">Home</a>
+            <a class="home4" href="#course-list-parent">Courses</a>
+            <a class="home4" href="#circle-header-parent">Circles</a>
           </div>
           <div class="login-section4">
+            <button class="logout" id="logout">Sign out</button>
             <img
               class="avatar-icon4"
               loading="lazy"
               alt=""
-              src="../assets/public/avatar@2x.png"
+              src="../assets/public/placeholder-picture.jpg"
             />
           </div>
         </div>
@@ -87,7 +90,7 @@
               <div class="welcome-message">
                 <div class="greeting">
                   <div class="bg50"></div>
-                  <div class="hello-user1">Hello, {user}!</div>
+                  <div class="hello-user1" id="hello-user">Hello, {user}!</div>
                 </div>
                 <h1 class="create-ai-generated-container">
                   <p class="create-ai-generated">Create AI Generated</p>
@@ -103,7 +106,7 @@
               </div>
             </div>
           </div>
-          <div class="course-list-parent">
+          <div class="course-list-parent" id="course-list-parent">
             <div class="course-list2">
               <div class="course-item1">
                 <div class="course-header1">
@@ -118,52 +121,10 @@
                 </div>
               </div>
             </div>
-            <div class="course-card1">
-              <div class="card-content">
-                <div class="bg51"></div>
-                <div class="card-details">
-                  <div class="card-badge">
-                    <h3 class="java-basics2">Java Basics</h3>
-                  </div>
-                  <div class="java-basics-is2">
-                    Java Basics is a foundational concept about java language
-                    programming
-                  </div>
-                </div>
-                <div class="card-actions">
-                  <div class="action-buttons1">
-                    <button class="button-preview2">
-                      <div class="bg52"></div>
-                      <div class="edit1">Edit</div>
-                    </button>
-                    <button class="button-preview3">
-                      <div class="bg53"></div>
-                      <div class="share">Share</div>
-                    </button>
-                    <div class="button-delete1">
-                      <div class="bg54"></div>
-                      <div class="delete1">Delete</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-content1">
-                <div class="bg55"></div>
-                <div class="badge-container">
-                  <div class="badge1">
-                    <img
-                      class="icon1"
-                      loading="lazy"
-                      alt=""
-                      src="../assets/public/icon.svg"
-                    />
-                  </div>
-                </div>
-                <div class="create1">Create</div>
-              </div>
+            <div class="course-card1" id="course-card1">
             </div>
           </div>
-          <div class="circle-header-parent">
+          <div class="circle-header-parent" id="circle-header-parent">
             <div class="circle-header">
               <h1 class="your-circles1">Your Circles</h1>
             </div>
@@ -183,34 +144,355 @@
                   <div class="invitation-link-container-child"></div>
                   <input
                     class="invitation-link3"
+                    id="invitation-link"
                     placeholder="Invitation Link"
                     type="text"
                   />
                 </div>
-                <div class="circle-card">
-                  <div class="card-data">
-                    <div class="bg56"></div>
-                    <h3 class="marketing-team2">Marketing Team</h3>
-                  </div>
-                  <div class="card-data1">
-                    <div class="bg57"></div>
-                    <div class="badge-frame">
-                      <div class="badge2">
-                        <img class="icon2" alt="" src="../assets/public/icon.svg" />
-                      </div>
-                    </div>
-                    <div class="create2">Create</div>
-                  </div>
+                <span class="join-message" id="join-message"></span>
+                <span class="join-success" id="join-success">Joined circle successfully</span>
+                <button class="button-generate-course1">
+                  <div class="bg58"></div>
+                  <div class="join1" id="join-circle-button">Join</div>
+                </button>
+                <div class="team-section" id="team-section">
                 </div>
               </div>
-              <button class="button-generate-course1">
-                <div class="bg58"></div>
-                <div class="join1">Join</div>
-              </button>
             </div>
           </div>
         </section>
       </main>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const logoutButton = document.getElementById('logout');
+        const joinCircleButton = document.getElementById('join-circle-button');
+        const invitationInput = document.getElementById('invitation-link');
+        const newCourse = document.getElementById('new-course-card');
+
+        invitationInput.addEventListener('input', function() {
+          document.getElementById('join-success').style.display = 'none';
+          document.getElementById('join-message').style.display = 'none';
+        })
+
+        logoutButton.addEventListener('click', function() {
+          localStorage.removeItem('keyLearntelligence');
+          window.location.href = '/templates/sign-in-page.html';
+        })
+
+        joinCircleButton.addEventListener('click', function() {
+          joinCircle(invitationInput.value);
+        })
+
+        newCourse.addEventListener('click', function() {
+          window.location.href =  '/templates/creator-course-creation.html'
+        })
+      })
+
+      window.onload = function() {
+        fetchUserData();
+        fetchCourses();
+        fetchCircles();
+      }
+
+      function joinCircle(invitationLink) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch(invitationLink, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            const message = document.getElementById('join-success');
+            message.textContent = data.message;
+            message.style.display = 'block';
+            teamSection.innerHTML = '';
+            fetchCircles();
+          } else if (data.status == '404' || data.status == '500') {
+            const message = document.getElementById('join-message');
+            message.textContent = data.message;
+            message.style.display = 'block';
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fetchUserData() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            if (data.data.role == 'user') {
+              window.location.href = '/templates/user-landing-page.html'
+            }
+            document.getElementById('hello-user').innerText = `Hello, ${data.data.name}!`
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fetchCircles() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/circles', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            fillCircles(data.data);
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fillCircles(circles) {
+        const teamSection = document.getElementById('team-section');
+        teamSection.innerHTML = '';
+
+        circles.forEach(circle => {
+          teamSection.appendChild(createCard(circle.circleName, circle.id, true));
+        });
+        teamSection.appendChild(createCard('', '', false))
+        
+      }
+
+      function createCard(titleText, circleId, content) {
+        const button = document.createElement('button');
+        button.classList.add('circle-link');
+
+        const card = document.createElement('div');
+        card.classList.add('circle-card');
+
+        const bgDiv = document.createElement('div');
+        bgDiv.classList.add('bg28');
+        card.appendChild(bgDiv);
+
+        if (content) {
+          const title = document.createElement('h3');
+          title.classList.add('circle-title');
+          title.textContent = titleText;
+
+          card.appendChild(title);
+        } else {
+          const frame = document.createElement('div');
+          frame.classList.add('badge-frame');
+
+          const badge = document.createElement('div');
+          badge.classList.add('badge2');
+
+          const imagePlaceholder = document.createElement('img');
+          imagePlaceholder.classList.add('icon2');
+          imagePlaceholder.alt = '';
+          imagePlaceholder.src = '../assets/public/icon.svg';
+
+          const createText = document.createElement('div');
+          createText.classList.add('create2');
+          createText.innerText = 'Create';
+
+          badge.appendChild(imagePlaceholder);
+          frame.appendChild(badge);
+          card.appendChild(frame);
+          card.appendChild(createText);
+        }
+
+        button.appendChild(card);
+
+        button.addEventListener('click', function() {
+          if (content) {
+            window.location.href = `/templates/creator-circle-page.html?circleId=${circleId}`;
+          } else {
+            window.location.href = '/templates/creator-circle-creation.html';
+          }
+        });
+
+        return button;
+      }
+
+      function fetchCourses() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/creator', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            fillCourses(data.data);
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fillCourses(courses) {
+        const courseSection = document.getElementById('course-card1');
+        courseSection.innerHTML = '';
+
+        courses.forEach(course => {
+          courseSection.appendChild(createCardCourse(course, true));
+        })
+        courseSection.appendChild(createCardCourse('', false));
+      }
+
+      function createCardCourse(course, content) {
+        const parent = document.createElement('div');
+        parent.classList.add('card-content');
+        
+        const bg = document.createElement('div');
+        bg.classList.add('bg51');
+        parent.appendChild(bg);
+
+        const details = document.createElement('div');
+        details.classList.add('card-details');
+
+        const badge = document.createElement('div');
+        badge.classList.add('card-badge');
+
+        if (content) {
+          const title = document.createElement('h3');
+          title.classList.add('java-basics2');
+          title.textContent = course.name;
+          badge.appendChild(title);
+          details.appendChild(badge);
+  
+          const desc = document.createElement('div');
+          let description = ''
+          desc.classList.add('java-basics-is2');
+          if (course.description.length > 65) {
+            description = `${course.description.slice(0, 65)}...`;
+          } else {
+            description = course.description;
+          }
+          if (course.onContentLoading) {
+            desc.innerHTML = description + '<br><br>GENERATING';
+          } else {
+            desc.innerText = description;
+          }
+
+          details.appendChild(desc);
+        } else {
+          const title = document.createElement('h3');
+          title.classList.add('java-basics2');
+          title.textContent = 'Create New';
+          badge.appendChild(title);
+
+          const icon = document.createElement('img');
+          icon.classList.add('icon1');
+          icon.setAttribute('loading', 'lazy');
+          icon.alt = '';
+          icon.src = '../assets/public/icon.svg';
+          badge.appendChild(icon)
+
+          details.appendChild(badge);
+        }
+      
+        parent.appendChild(details);
+
+        if (!course.onContentLoading && content) {
+          const actions = document.createElement('div');
+          actions.classList.add('card-actions');
+          const buttons = document.createElement('div');
+          buttons.classList.add('action-buttons1');
+  
+          const viewButton = document.createElement('button');
+          viewButton.classList.add('button-preview2');
+          viewButton.innerHTML = `<div class="bg52"></div><div class="edit1">Preview/Edit</div>`
+          buttons.appendChild(viewButton);
+  
+          const shareButton = document.createElement('button');
+          shareButton.classList.add('button-preview3');
+          shareButton.innerHTML = `<div class="bg53"></div><div class="share">Share</div>`;
+          buttons.appendChild(shareButton);
+  
+          const deleteButton = document.createElement('button');
+          deleteButton.classList.add('button-delete1');
+          deleteButton.innerHTML = `<div class="bg54"></div><div class="delete1">Delete</div>`;
+          buttons.appendChild(deleteButton);
+
+          viewButton.addEventListener('click', function() {
+            window.location.href = `/templates/creator-preview-course.html?courseId=${course.id}`;
+          })
+
+          // TODO: Share Button make modal
+
+          deleteButton.addEventListener('click', function() {
+            const keyAuth = localStorage.getItem('keyLearntelligence');
+
+            fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${course.id}`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + keyAuth
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.status == '200') {
+                fetchCourses();
+              } else if (data.status == '404' || data.status == '500') {
+                alert(data.message);
+              } else { // unauthorized, not logged in, user not found
+                alert(data.message);
+                window.location.href = '/templates/sign-in-page.html';
+              }
+            })
+          })
+  
+          actions.appendChild(buttons);
+          parent.appendChild(actions);
+        }
+
+        if (!content) {
+          parent.style.cursor = 'pointer';
+          parent.addEventListener('mouseover', function() {
+            this.classList.add('card-hover');
+          });
+
+          parent.addEventListener('mouseout', function() {
+            this.classList.remove('card-hover');
+          });
+
+          parent.addEventListener('click', function() {
+            window.location.href = '/templates/creator-course-creation.html';
+          })
+        }
+        return parent;
+      }
+    </script>
   </body>
 </html>

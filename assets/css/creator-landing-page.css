@@ -62,8 +62,37 @@
   width: 156.8px;
   position: relative;
 }
+.logout {
+  cursor: pointer;
+  border: 0;
+  padding: 7px 10px;
+  background-color: #ff6652;
+  margin-right: 10px;
+  box-shadow: 0 15px 50px rgba(255, 102, 82, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: white;
+}
+.join-message {
+  color: red;
+  font-size: 12px;
+  display: none; 
+  margin-top: 5px;
+  text-align: left;
+}
+.join-success {
+  color: green;
+  font-size: 12px;
+  display: none; 
+  margin-top: 5px;
+  text-align: left;
+}
 .home4 {
   text-decoration: none;
+  margin: 10px;
   position: relative;
   color: inherit;
   display: inline-block;
@@ -238,9 +267,10 @@
 .course-list2 {
   align-self: stretch;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
   max-width: 100%;
 }
 .bg51 {
@@ -274,6 +304,7 @@
   line-height: 30px;
   color: #5d5a6f;
   z-index: 1;
+  overflow: hidden;
 }
 .card-details {
   align-self: stretch;
@@ -281,7 +312,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 39px;
+  gap: 20px;
 }
 .bg52,
 .edit1 {
@@ -380,12 +411,20 @@
   z-index: 1;
 }
 .button-delete1 {
+  cursor: pointer;
   flex: 0.7786;
   border-radius: 5px;
+  background-color: transparent;
+  color: red;
   border: 1px solid red;
   justify-content: flex-start;
   padding: 4px 12px 8px;
   z-index: 1;
+}
+.button-delete1:hover {
+  background-color: rgba(244, 24, 24, 0.09);
+  border: 1px solid red;
+  box-sizing: border-box;
 }
 .action-buttons1,
 .button-delete1,
@@ -407,7 +446,8 @@
   color: red;
   font-family: Inter;
 }
-.card-content {
+.card-content,
+.card-content-new {
   flex: 1;
   border-radius: 15px;
   background-color: #fff;
@@ -418,7 +458,9 @@
   padding: 33px 15px 20px;
   box-sizing: border-box;
   gap: 77px;
-  min-width: 275px;
+  width: 250px;
+  height: 300px;
+  overflow: hidden;
 }
 .bg55,
 .icon1 {
@@ -467,7 +509,7 @@
   min-width: 57px;
   z-index: 1;
 }
-.card-content1,
+.card-content1  
 .course-card1,
 .course-list-parent {
   display: flex;
@@ -491,10 +533,38 @@
   max-width: 100%;
 }
 .course-card1 {
-  width: 602px;
+  width: 100%;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 22px;
   font-size: 25px;
+}
+.card-content,
+.card-content-new {
+  flex: 1 1 250px;  /* Adjust flex-basis as per the minimum width you want */
+  margin: 5px;  /* Provide some margin for spacing */
+  box-sizing: border-box;
+}
+.java-basics-is2 {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.course-card1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensures space distribution */
+  gap: 10px; /* Manages spacing between cards */
+}
+
+.card-content,
+.card-content-new {
+  flex: 1 1 250px; /* Adjusts basis to 250px but allows growth */
+  height: 300px; /* Consistent height */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff; /* Background color */
+  border-radius: 15px; /* Rounded corners */
+  margin: 5px; /* Margin around cards */
 }
 .course-list-parent {
   width: 983px;
@@ -571,6 +641,7 @@
 }
 .invitation-link3 {
   width: 375px;
+  flex: auto;
   border: 0;
   outline: 0;
   font-family: Poppins;
@@ -660,15 +731,75 @@
 }
 .create2 {
   width: 57px;
+  padding-left: 5px;
   position: relative;
   line-height: 30px;
   display: inline-block;
   flex-shrink: 0;
-  min-width: 57px;
   z-index: 1;
 }
+.team-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+.circle-link {
+  height: auto;
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: center;
+  width: auto;
+}
+.circle-link:focus {
+  outline: none; 
+}
+.circle-card {
+  width: 250px;
+  height: 300px;
+  border-radius: 15px;
+  margin: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 149px 40px 142px 41px;
+  box-sizing: border-box;
+  font-size: 25px;
+  overflow: hidden;
+}
+.card-hover {
+  background-color: #f0f0f0; /* Your desired hover color */
+}
+.circle-card:hover,
+.card-content-new:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+.circle-title {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  z-index: 1;
+  text-decoration: none;
+  color: #000;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+  font-size: 20px;
+}
 .card-data1,
-.circle-card,
+/* .circle-card, */
 .invitation-content {
   display: flex;
   align-items: flex-start;
@@ -686,20 +817,30 @@
   font-size: 16px;
   color: #5d5a6f;
 }
-.circle-card,
+/* .circle-card, */
 .invitation-content {
   max-width: 100%;
 }
-.circle-card {
-  width: 602px;
+/* .circle-card {
+  display: flex;
   flex-direction: row;
-  gap: 22px;
-}
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+} */
 .invitation-content {
   flex: 1;
   flex-direction: column;
   gap: 37px;
   min-width: 690px;
+}
+.bg28 {
+  height: 329px;
+  width: 295.8px;
+  position: relative;
+  border-radius: 15px;
+  background-color: #fff;
+  display: none;
 }
 .bg58,
 .join1 {
@@ -832,11 +973,9 @@
     line-height: 44px;
   }
   .card-content,
+  .card-content-new,
   .card-content1 {
     flex: 1;
-  }
-  .course-card1 {
-    flex-wrap: wrap;
   }
   .course-list-parent {
     gap: 20px;
@@ -845,9 +984,9 @@
     font-size: 36px;
     line-height: 44px;
   }
-  .circle-card {
+  /* .circle-card {
     flex-wrap: wrap;
-  }
+  } */
   .invitation-content {
     gap: 18px;
   }
@@ -883,7 +1022,8 @@
   .card-details {
     gap: 19px;
   }
-  .card-content {
+  .card-content,
+  .card-content-new {
     gap: 38px;
   }
   .card-content1 {
