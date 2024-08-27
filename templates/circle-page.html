@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="../assets/css/circle-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito Sans:wght@700&display=swap"
+    />
+
+    <style>
+      @font-face {
+        font-family: "Font Awesome 5 Free";
+        src: url("../assets/public/Font Awesome 5 Free-Regular-400.otf");
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="creator-circle-page">
+      <header class="header4">
+        <div class="header-content3">
+          <img
+            class="logo-icon3"
+            loading="lazy"
+            alt=""
+            src="../assets/public/logo.svg"
+          />
+
+          <div class="nav-links3">
+            <a class="home3" href="/templates/creator-landing-page.html">Home</a>
+          </div>
+          <div class="login-section3">
+            <img
+              class="avatar-icon3"
+              loading="lazy"
+              alt=""
+              src="../assets/public/placeholder-picture.jpg"
+            />
+          </div>
+        </div>
+      </header>
+      <main class="content-description-wrapper">
+        <section class="content-description1">
+          <div class="bg33">
+            <div class="bg34"></div>
+            <a class="circle2">Circle</a>
+            <div class="circle-name-wrapper">
+              <h1 class="circle-name1" id="circle-name"></h1>
+            </div>
+          </div>
+          <div class="invitation-details">
+            <div class="description-parent">
+              <h2 class="description2">Description</h2>
+              <div class="description3" id="circle-description"></div>
+            </div>
+          </div>
+          <div class="invitation-details1">
+            <div class="invitation-link-group">
+              <h2 class="invitation-link2">Invitation Link</h2>
+              <div class="httpsfahmisabilacom1" id="circle-link"></div>
+            </div>
+          </div>
+          <div class="courses-header-wrapper">
+            <div class="courses-header">
+              <h2 class="courses1">Courses</h2>
+              <button class="create-course" id="create-course">Create</button>
+              <div class="course-list1">
+                <div class="java-course" id="java-course">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="members-header-wrapper">
+            <div class="members-header">
+              <h2 class="members1">Members</h2>
+              <div class="member-list1" id="member-list1">
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      let userRole = null;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const createButton = document.getElementById('create-course');
+
+        createButton.addEventListener('click', function() {
+          window.location.href = `/templates/${userRole}-course-creation.html`;
+        })
+      })
+
+      window.onload = function() {
+        fetchUserData();
+        fetchCircleData();
+      }
+
+      function fetchUserData() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            userRole = data.data.role;
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fetchCircleData() {
+        const circleId = new URLSearchParams(window.location.search).get('circleId');
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/circles/${circleId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            fillCircleInformation(data.data);
+          }  else if (data.status == '401') {
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          } else {
+            alert(data.message);
+            window.location.href = `/templates/${userRole}-landing-page.html`;
+          }
+        })
+      }
+
+      function fillCircleInformation(data) {
+        document.getElementById('circle-name').innerText = data.circleName;
+        document.getElementById('circle-description').innerText = data.description;
+        document.getElementById('circle-link').innerText = data.invitationLink;
+
+        const courseSection = document.getElementById('java-course');
+        courseSection.innerHTML = '';
+        data.courses.forEach(course => {
+          courseSection.appendChild(createCardCourse(course));
+        });
+
+        const memberSection = document.getElementById('member-list1');
+        memberSection.innerHTML = '';
+        data.members.forEach(member => {
+          memberSection.appendChild(createCardMember(member));
+        })
+      }
+
+      function createCardCourse(course) {
+        const card = document.createElement('div');
+        card.classList.add('java-course-details');
+
+        const bg35 = document.createElement('div');
+        bg35.classList.add('bg35');
+        card.appendChild(bg35);
+        
+        const content = document.createElement('div');
+        content.classList.add('java-course-content');
+        const badge = document.createElement('div');
+        badge.classList.add('java-badge');
+        const title = document.createElement('h3');
+        title.classList.add('java-basics1');
+        title.innerText = course.name;
+        badge.appendChild(title);
+        content.appendChild(badge);
+        const desc = document.createElement('div');
+        desc.classList.add('java-basics-is1');
+        desc.innerText = course.description;
+        content.appendChild(desc);
+        card.appendChild(content);
+
+        const actions = document.createElement('div');
+        actions.classList.add('course-actions');
+        const buttons = document.createElement('div');
+        buttons.classList.add('action-buttons');
+
+        if (userRole == 'creator') {
+          const viewButton = document.createElement('button');
+          viewButton.classList.add('button-preview1');
+          const bg36 = document.createElement('div');
+          bg36.classList.add('bg36');
+          const view = document.createElement('div');
+          view.classList.add('edit-preview');
+          view.innerText = 'Edit & Preview';
+          viewButton.appendChild(bg36);
+          viewButton.appendChild(view);
+          viewButton.addEventListener('click', function() {
+            window.location.href = `/templates/creator-preview-course.html?courseId=${course.id}`;
+          })
+          buttons.appendChild(viewButton);
+  
+          const deleteButton = document.createElement('div');
+          deleteButton.classList.add('button-delete');
+          const bg37 = document.createElement('div');
+          bg37.classList.add('bg37');
+          const del = document.createElement('div');
+          del.classList.add('delete');
+          del.innerText = 'Delete';
+          deleteButton.appendChild(bg37);
+          deleteButton.appendChild(del);
+          deleteButton.addEventListener('click', function() {
+            if (confirm(`Are you sure you want to delete ${course.name} course from this circle?`)) {
+              const keyAuth = localStorage.getItem('keyLearntelligence');
+              const circleId = new URLSearchParams(window.location.search).get('circleId');
+  
+              fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/${course.id}?circleId=${circleId}`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': "Bearer " + keyAuth
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status == '200') {
+                  fetchCircleData();
+                } if (data.status == '404') {
+                  alert(data.message);
+                } else {
+                  alert(data.message);
+                  window.location.href = '/templates/sign-in-page.html';
+                }
+              })
+            }
+          })
+          buttons.appendChild(deleteButton);
+        } else {
+          const learnButton = document.createElement('button');
+          learnButton.classList.add('button-preview1');
+          const bg36 = document.createElement('div');
+          bg36.classList.add('bg36');
+          const learn = document.createElement('div');
+          learn.classList.add('edit-preview');
+          learn.innerText = 'Learn';
+          learnButton.appendChild(bg36);
+          learnButton.appendChild(learn);
+          learnButton.addEventListener('click', function() {
+            window.location.href = `/templates/user-learn-material.html?courseId=${course.id}`;
+          })
+          buttons.appendChild(learnButton);
+        }
+
+        actions.appendChild(buttons);
+        card.appendChild(actions);
+
+        return card;
+      }
+
+      function createCardMember(member) {
+        const parent = document.createElement('div23');
+        parent.classList.add('div23');
+
+        const bg = document.createElement('div');
+        bg.classList.add('bg39');
+        parent.appendChild(bg);
+
+        const imgProfile = document.createElement('img');
+        imgProfile.classList.add('image-icon9');
+        imgProfile.loading = 'lazy';
+        imgProfile.alt = '';
+        const randomNumber = Math.floor(Math.random() * 4) + 1;
+        imgProfile.src = `../assets/public/image-${randomNumber}@2x.png`;
+        parent.appendChild(imgProfile);
+
+        const inner = document.createElement('div');
+        inner.classList.add('inner2');
+        const parentInfo = document.createElement('div');
+        parentInfo.classList.add('yoga-parent');
+        const name = document.createElement('h3');
+        name.classList.add('yoga1');
+        name.innerText = member.name;
+        const role = document.createElement('div');
+        role.classList.add('creator1');
+        role.innerText = member.role;
+        parentInfo.appendChild(name);
+        parentInfo.appendChild(role);
+        inner.appendChild(parentInfo);
+
+        parent.appendChild(inner);
+
+        return parent;
+      }
+      
+    </script>
+  </body>
+</html>
