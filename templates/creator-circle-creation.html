@@ -138,9 +138,7 @@
         .then(response => response.json())
         .then(data => {
           if (data.status == '201') {
-            alert(data.message);
-            alert(data.invitationLink); 
-            window.location.href = '/templates/creator-circle-page.html'
+            window.location.href =  `/templates/circle-page.html?circleId=${data.circleId}`;
             // TODO: redirect to creator circle page with circleId
           } else if (data.status == '500') {
             alert(data.message);
