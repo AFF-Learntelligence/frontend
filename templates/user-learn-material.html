@@ -50,6 +50,8 @@
             class="back-button-icon"
             loading="lazy"
             alt=""
+            id="back-button"
+            style="cursor: pointer;"
             src="../assets/public/back-button.svg"
           />
 
@@ -58,104 +60,305 @@
         <div class="content-header-wrapper">
           <div class="content-header">
             <div class="content-header-child"></div>
-            <h1 class="chapter-01-introduction">
-              Chapter 01: Introduction about XD
+            <h1 class="chapter-01-introduction" id="course-big-title">
             </h1>
           </div>
         </div>
       </header>
       <main class="body">
         <div class="chapters-layout">
-          <div class="chapter-items">
-            <div class="chapter-1">
-              <div class="chapter-1-child"></div>
-              <div class="chapter-icons">
-                <div class="div"></div>
-              </div>
-              <div class="chapter-01">Chapter 01 : Introduction about XD</div>
-            </div>
-            <div class="chapter-1-quiz">
-              <div class="chapter-1-quiz-child"></div>
-              <div class="div1"></div>
-              <div class="quiz">Quiz</div>
-            </div>
-            <div class="chapter-2">
-              <div class="chapter-2-child"></div>
-              <div class="wrapper">
-                <div class="div2"></div>
-              </div>
-              <div class="chapter-2-basic">Chapter 2: Basic Syntax</div>
-            </div>
-            <div class="chapter-3">
-              <div class="chapter-3-child"></div>
-              <div class="container">
-                <div class="div3"></div>
-              </div>
-              <div class="chapter-3-implementation">
-                Chapter 3: Implementation
-              </div>
-            </div>
-            <div class="chapter-4">
-              <div class="chapter-4-child"></div>
-              <div class="frame">
-                <div class="div4"></div>
-              </div>
-              <div class="chapter-4-maintaining">
-                Chapter 4: Maintaining the Code
-              </div>
-            </div>
+          <div class="chapter-items" id="chapter-section">
           </div>
         </div>
         <section class="content1">
           <div class="content-visual"></div>
-          <div class="content-summary">
-            <h2 class="o6-super-coins">O6 Super Coins on the way</h2>
-            <div class="lorem-ipsum-dolor">
-              Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed do
-              eiusmodadipiscing elit, sed do eiusmodLorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmodadipiscing elit, sed do
-              eiusmodLorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmodadipiscing elit, sed do eiusmodeiusmodadipiscing
-              elit, sed do eiusmod
-            </div>
-          </div>
-          <div class="content-summary1">
-            <h2 class="explanation-of-the">Explanation of the topic</h2>
-            <div class="lorem-ipsum-dolor1">
-              Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed do
-              eiusmodadipiscing elit, sed do eiusmodLorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmodadipiscing elit, sed do
-              eiusmodLorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmodadipiscing elit, sed do eiusmodeiusmodadipiscing
-              elit, sed do eiusmodL
-            </div>
-          </div>
-          <div class="content-emphasis">
-            <div class="emphasis-content">
-              <h2 class="emphasis-on-the">Emphasis on the importance</h2>
-              <div class="lorem-ipsum-dolor-container">
-                <p class="lorem-ipsum-dolor2">
-                  Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed
-                  do eiusmodadipiscing elit, sed do eiusmodLorem ipsum dolor sit
-                  amet, consectetur adipiscing elit, sed do eiusmodadipiscing
-                  elit, sed do eiusmodLorem ipsum dolor sit amet, consectetur
-                  adipiscing elit, sed do eiusmodadipiscing elit, sed do
-                  eiusmodeiusmodadipiscing elit, sed do eiusmodLWho this course
-                  is for?
-                </p>
-                <p class="lorem-ipsum-dolor3">
-                  Lorem ipsum dolor sit amet, consectetur adi piscing elit, sed
-                  do eiusmodadipiscing elit, sed do eiusmodLorem ipsum dolor sit
-                  amet, consectetur adipiscing elit, sed do eiusmodadipiscing
-                  elit, sed do eiusmodLorem ipsum dolor sit amet, consectetur
-                  adipiscing elit, sed do eiusmodadipiscing elit, sed do
-                  eiusmodeiusmodadipiscing elit, sed do eiusmodL
-                </p>
-              </div>
-            </div>
+          <div class="content-summary" id="content-parent">
           </div>
         </section>
       </main>
     </div>
+    <script>
+      let materials;
+      let selectedChapter = 1;
+      let isMaterial = true;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const backButton = document.getElementById('back-button');
+
+        backButton.addEventListener('click', function() {
+          window.history.back();
+        });
+      });
+
+      window.onload = async function() {
+        const courseId = new URLSearchParams(window.location.search).get('courseId');
+        const circleId = new URLSearchParams(window.location.search).get('circleId');
+
+        try {
+          materials = await fetchCourseData(courseId, circleId);
+          fillChaptersSection();
+          fillMaterialContent(0);
+        } catch (error) {
+          alert('Error fetching course data')
+          console.error('Failed to fetch course data:', error);
+        }
+      }
+
+      async function fetchCourseData(courseId, circleId) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        const response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${courseId}?circleId=${circleId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + keyAuth
+          }
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          // alert(data.message);
+          document.getElementById('course-big-title').innerText = data.data.name;
+          return data.data.content;
+        } else {
+          alert(data.message);
+        }
+      }
+
+      function fillChaptersSection() {
+        const section = document.getElementById('chapter-section');
+
+        for (let i = 1; i <= materials.length; i++) {
+          const chapter = document.createElement('div');
+          if (i !== 1) {
+            chapter.classList.add('chapter-unselect')
+          } else {
+            chapter.classList.add('chapter-select');
+          }
+          chapter.id = `chapter-${i}`;
+          chapter.addEventListener('click', function() {
+            selectChapter(i);
+          })
+
+          const chapterChild = document.createElement('div');
+          chapterChild.classList.add('chapter-child');
+          chapter.appendChild(chapterChild);
+
+          const chapterIcon = document.createElement('div');
+          chapterIcon.classList.add('chapter-icons');
+          const icon = document.createElement('div');
+          icon.classList.add('div');
+          icon.innerText = '';
+          chapterIcon.appendChild(icon);
+          chapter.appendChild(chapterIcon);
+
+          const title = document.createElement('div');
+          title.classList.add('chapter-title');
+          title.innerText = `Chapter ${i}: ${materials[i-1].title}`;
+          chapter.appendChild(title);
+          section.appendChild(chapter);
+        }
+        quizChapter(1, false);
+      }
+
+      function selectChapter(index) {
+        if (index !== selectedChapter && isMaterial) {
+          document.getElementById(`chapter-${selectedChapter}`).className = 'chapter-unselect';
+          document.getElementById(`chapter-${index}`).className = 'chapter-select';
+          fillMaterialContent(index-1)
+          quizChapter(index, true);
+          selectedChapter = index;
+        }
+      }
+
+      function quizChapter(index, remove) {
+        if (remove) {
+          document.getElementById('chapter-quiz').remove()
+        }
+
+        const parentChapter = document.getElementById(`chapter-${index}`);
+
+        const parentQuiz = document.createElement('div');
+        parentQuiz.classList.add('chapter-quiz');
+        parentQuiz.id = 'chapter-quiz';
+
+        const child = document.createElement('div');
+        child.classList.add('chapter-quiz-child');
+        const div1 = document.createElement('div');
+        div1.classList.add('div1');
+        div1.innerText = '';
+        const quiz = document.createElement('div');
+        quiz.classList.add('quiz');
+        quiz.innerText = 'Quiz'
+        parentQuiz.appendChild(child);
+        parentQuiz.appendChild(div1);
+        parentQuiz.appendChild(quiz);
+        parentQuiz.addEventListener('click', function() {
+          fillQuizContent(index, 1)
+        })
+
+        parentChapter.insertAdjacentElement('afterend', parentQuiz)
+      }
+   
+      function fillMaterialContent(index) {
+        const content = materials[index]
+        const parent = document.getElementById('content-parent');
+        parent.innerHTML = ''
+        const paragraphs = content.text.split('\n');
+
+        paragraphs.forEach(paragraph => {
+          if (paragraph !== '') {
+            let child = null;
+            if (paragraph.startsWith('###')) {
+              child = document.createElement('h3');
+              child.classList.add('o6-super-coins');
+              child.innerText = paragraph.replace(/###\s*/, '');
+            } else if (paragraph.startsWith('##')) {
+              child = document.createElement('h2');
+              child.classList.add('o6-super-coins');
+              child.innerText = paragraph.replace(/##\s*/, '');
+            } else if (!paragraph.startsWith('#')) {
+              child = document.createElement('div');
+              child.classList.add('lorem-ipsum-dolor');
+              paragraph = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+              child.innerHTML = paragraph;
+            }
+  
+            if (child) {
+              parent.appendChild(child);
+            }
+          }
+        })
+      }
+
+      function fillQuizContent(index, number) {
+        const quizLength = materials[index-1].quiz.length;
+        const question = materials[index-1].quiz[number-1];
+        const parent = document.getElementById('content-parent');
+        parent.innerHTML = '';
+
+        const qFrame = document.createElement('div');
+        qFrame.classList.add('question-frame');
+        const qInfo = document.createElement('div');
+        qInfo.classList.add('question-info');
+        qInfo.innerText = `Question ${number}/${quizLength}`
+        qFrame.appendChild(qInfo);
+        const qText = document.createElement('h4');
+        qText.classList.add('question-info');
+        qText.innerText = question.question
+        qFrame.appendChild(qText);
+        parent.appendChild(qFrame);
+
+        const seperator = document.createElement('div');
+        seperator.classList.add('separator-wrapper');
+        const sepImg = document.createElement('img');
+        sepImg.classList.add('separator-icon');
+        sepImg.loading = 'lazy';
+        sepImg.alt = '';
+        sepImg.src = '../assets/public/separator.svg'
+        seperator.appendChild(sepImg);
+        parent.appendChild(seperator);
+
+        const answerFrame = document.createElement('div');
+        answerFrame.classList.add('answer-frame');
+        question.choices.forEach(choice => {
+          const card = document.createElement('div');
+          card.classList.add('option-card');
+          const opt = document.createElement('div');
+          opt.classList.add('option');
+          card.appendChild(opt);
+          const optContent = document.createElement('div');
+          optContent.classList.add('option-content');
+          const optLetter = document.createElement('div');
+          optLetter.classList.add('option-letter');
+          const letter = document.createElement('h1');
+          letter.classList.add('letter');
+          letter.innerText = choice.letter;
+          optLetter.appendChild(letter);
+          optContent.appendChild(optLetter);
+          card.appendChild(optContent);
+
+          const optAnswer = document.createElement('div');
+          optAnswer.classList.add('option-answer');
+          const answer = document.createElement('h3');
+          answer.classList.add('answer');
+          answer.innerText = choice.answer;
+          optAnswer.appendChild(answer); 
+          card.appendChild(optAnswer);
+
+          card.addEventListener('click', function() {
+            validateAnswer(choice.letter, question.key);
+          })
+
+          card.id = `${choice.letter}`
+          answerFrame.appendChild(card);
+        })
+        parent.appendChild(answerFrame);
+
+        const buttonFrame = document.createElement('div');
+        buttonFrame.classList.add('button-frame')
+
+        if (number != 1) {
+          const buttonWrapperBack = document.createElement('div');
+          buttonWrapperBack.classList.add('button-wrapper');
+          const buttonBack = document.createElement('div');
+          buttonBack.classList.add('button-next');
+          const boxBack = document.createElement('div');
+          boxBack.classList.add('box');
+          const back = document.createElement('div');
+          back.classList.add('next')
+          back.innerText = 'Back'
+          buttonBack.appendChild(boxBack);
+          buttonBack.appendChild(back);
+          buttonWrapperBack.appendChild(buttonBack);
+          buttonFrame.appendChild(buttonWrapperBack);
+          buttonWrapperBack.addEventListener('click', function() {
+            fillQuizContent(index, number-1);
+          })
+        }
+
+        if (number != quizLength) {
+          const buttonWrapper = document.createElement('div');
+          buttonWrapper.classList.add('button-wrapper');
+          const buttonNext = document.createElement('div');
+          buttonNext.classList.add('button-next');
+          const box = document.createElement('div');
+          box.classList.add('box');
+          const next = document.createElement('div');
+          next.classList.add('next')
+          next.innerText = 'Next'
+          buttonNext.appendChild(box);
+          buttonNext.appendChild(next);
+          buttonWrapper.appendChild(buttonNext);
+          buttonFrame.appendChild(buttonWrapper);
+          buttonWrapper.addEventListener('click', function() {
+            fillQuizContent(index, number+1);
+          })
+        }
+
+        parent.appendChild(buttonFrame);
+      }
+
+      function validateAnswer(choice, key) {
+        if (choice != key) {
+          document.getElementById(choice).style.backgroundColor = 'rgba(234, 125, 125, 0.564)'
+        }
+        document.getElementById(key).style.backgroundColor = 'rgba(106, 245, 0, 0.564)'
+      }
+    </script>
   </body>
 </html>
+
+<!-- 
+<div class="answer-frame">
+  <div class="option-card"> V
+    <div class="option"></div> VV
+    <div class="option-content"> VV
+      <div class="option-letter">VV
+        <h1 class="letter">A</h1> VV
+    <div class="option-answer"> V
+      <h3 class="answer">This is the ice cold</h3> VV
+    </div>
+  </div>
+</div> 
+-->

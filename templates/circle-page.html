@@ -166,7 +166,11 @@
             window.location.href = '/templates/sign-in-page.html';
           } else {
             alert(data.message);
-            window.location.href = `/templates/${userRole}-landing-page.html`;
+            if (userRole) {
+              window.location.href = `/templates/${userRole}-landing-page.html`;
+            } else {
+              window.location.href = '/templates/sign-in-page.html'
+            }
           }
         })
       }
@@ -179,7 +183,9 @@
         const courseSection = document.getElementById('java-course');
         courseSection.innerHTML = '';
         data.courses.forEach(course => {
-          courseSection.appendChild(createCardCourse(course));
+          if (!course.isContentLoading && course.published) {
+            courseSection.appendChild(createCardCourse(course));
+          }
         });
 
         const memberSection = document.getElementById('member-list1');
@@ -217,6 +223,7 @@
         const buttons = document.createElement('div');
         buttons.classList.add('action-buttons');
 
+        const circleId = new URLSearchParams(window.location.search).get('circleId');
         if (userRole == 'creator') {
           const viewButton = document.createElement('button');
           viewButton.classList.add('button-preview1');
@@ -228,7 +235,7 @@
           viewButton.appendChild(bg36);
           viewButton.appendChild(view);
           viewButton.addEventListener('click', function() {
-            window.location.href = `/templates/creator-preview-course.html?courseId=${course.id}`;
+            window.location.href = `/templates/creator-preview-course.html?courseId=${course.id}&circleId=${circleId}`;
           })
           buttons.appendChild(viewButton);
   
@@ -278,7 +285,7 @@
           learnButton.appendChild(bg36);
           learnButton.appendChild(learn);
           learnButton.addEventListener('click', function() {
-            window.location.href = `/templates/user-learn-material.html?courseId=${course.id}`;
+            window.location.href = `/templates/user-learn-material.html?courseId=${course.id}&circleId=${circleId}`;
           })
           buttons.appendChild(learnButton);
         }
