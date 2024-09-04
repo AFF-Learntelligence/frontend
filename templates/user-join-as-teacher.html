@@ -43,6 +43,7 @@
     </style>
   </head>
   <body>
+    <form id="form">
     <div class="user-join-as-teacher">
       <header class="header1">
         <div class="header-content">
@@ -54,16 +55,17 @@
           />
 
           <div class="nav-links">
-            <a class="home">Home</a>
-            <a class="become-a-creator">Become a Creator</a>
-            <a class="circles">Circles</a>
+            <a class="home" href="/templates/user-landing-page.html">Home</a>
+            <a class="become-a-creator" href="">Become a Creator</a>
+            <a class="circles" href="/templates/user-landing-page.html#your-circles">Circles</a>
           </div>
           <div class="login-section">
+            <button class="logout" id="logout">Sign out</button>
             <img
               class="avatar-icon"
               loading="lazy"
               alt=""
-              src="../assets/public/avatar@2x.png"
+              src="../assets/public/placeholder-picture.jpg"
             />
           </div>
         </div>
@@ -118,11 +120,12 @@
                   <textarea
                     class="creator-submission"
                     placeholder="Enter your message"
+                    id="reason"
+                    required
                     rows="{12}"
                     cols="{28}"
-                  >
-                  </textarea>
-                  <button class="button">
+                  ></textarea>
+                  <button class="button" type="submit" id="submit-button">
                     <div class="bg4"></div>
                     <div class="apply-now">Apply Now</div>
                   </button>
@@ -133,5 +136,79 @@
         </section>
       </main>
     </div>
+  </form>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('form');
+        const logoutButton = document.getElementById('logout');
+
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const reason = document.getElementById('reason').value;
+          submitReasoning(reason)
+        })
+
+        logoutButton.addEventListener('click', function() {
+          localStorage.removeItem('keyLearntelligence');
+          window.location.href = '/templates/sign-in-page.html';
+        })
+      })
+
+      window.onload = function() {
+        fetchUserData();
+      }
+
+      function submitReasoning(reason) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        const data = {
+          'message': reason
+        }
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user/request-role', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            window.location.href = '/templates/user-landing-page.html';
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fetchUserData() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            if (data.data.role == 'creator') {
+              window.location.href = '/templates/creator-landing-page.html'
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+    </script>
   </body>
 </html>
