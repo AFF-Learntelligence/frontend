@@ -54,12 +54,7 @@
         <section class="course-description1">
           <h2 class="create-new-course">Create new course</h2>
           <div class="lorem-ipsum-dolor13">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmodadipiscing elit, sed do eiusmodLorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmodadipiscing elit, sed do
-            eiusmodLorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-            do eiusmodadipiscing elit, sed do eiusmodeiusmodadipiscing elit, sed
-            do eiusmodLorem
+            Create and customize your course effortlessly with our AI-powered tools that simplify the content creation process. Simply provide the necessary course details, and our platform will automatically generate a tailored outline and course for you! Focus on delivering an engaging and high-quality educational experience to your learners.
           </div>
         </section>
         <section class="course-details">
@@ -113,7 +108,7 @@
           </div>
         </section>
         <section class="sources">
-          <h2 class="add-sources-optional">Add Sources (Optional)</h2>
+          <h2 class="add-sources-optional">Add Sources (Under Development)</h2>
           <div class="source-types">
             <div class="source-types-child"></div>
             <div class="youtube-example">
@@ -127,6 +122,7 @@
                   id="youtube-link-input"
                   placeholder="Example: Python Programming Basics"
                   type="text"
+                  disabled
                 />
               </div>
             </div>
@@ -136,7 +132,7 @@
               </div>
               <div class="upload-instance">
                 <div class="upload-instance-container">
-                  <input type="file" id="file-upload-input"/>
+                  <input type="file" id="file-upload-input" disabled/>
                 </div>
               </div>
               <span class="file-error-message" id="file-error-message">File is not in PDF format. Please select another file.</span>
@@ -417,7 +413,33 @@
     </form>
     <script>
       window.onload = function() {
+        fetchUserData();
         toggleChapters(5);
+      }
+
+      function fetchUserData() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            if (data.data.role == 'user') {
+              window.location.href = `/templates/${data.data.role}-landing-page.html`
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
       }
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -438,7 +460,7 @@
           this.style.backgroundColor = 'rgba(12, 33, 193, 0.1)';
           generateChapter.style.backgroundColor = 'transparent';
           isGenerate = false;
-          toggleFillChapters(courseTitle, courseLength, isGenerate);
+          toggleFillChapters(courseTitle, courseLength, isGenerate, lang);
         })
 
         generateChapter.addEventListener('click' , function() {
@@ -447,7 +469,7 @@
           this.style.backgroundColor = 'rgba(12, 33, 193, 0.1)';
           manualChapter.style.backgroundColor = 'transparent'
           isGenerate = true;
-          toggleFillChapters(courseTitle, courseLength, isGenerate);
+          toggleFillChapters(courseTitle, courseLength, isGenerate, lang);
         })
 
         enButton.addEventListener('click', function() {
@@ -477,7 +499,7 @@
           const courseTitle = document.getElementById('name-input').value;
           const courseLength = levelElement.value;
           toggleChapters(this.value) 
-          toggleFillChapters(courseTitle, courseLength, isGenerate)
+          toggleFillChapters(courseTitle, courseLength, isGenerate, lang)
         })
 
         generateButton.addEventListener('click', function() {
@@ -562,7 +584,7 @@
         });
       }
 
-      function toggleFillChapters(courseTitle, courseLength, isGenerate) {
+      function toggleFillChapters(courseTitle, courseLength, isGenerate, lang) {
         if (isGenerate) {
           for (let i = 1; i <= courseLength; i++) {
             document.getElementById('chapter-input-' + i).value = 'Loading...'
@@ -572,7 +594,8 @@
 
           const data = {
             'title': courseTitle,
-            'length': courseLength
+            'length': courseLength,
+            'lang': lang
           }
 
           fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/chapters/generate', {

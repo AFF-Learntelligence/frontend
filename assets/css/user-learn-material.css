@@ -129,6 +129,68 @@
   z-index: 2;
   font-size: 19px;
 }
+.chapter-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-width: 100%;
+  width: 433px;
+  justify-content: flex-end;
+  padding: 15px 2px;
+  box-sizing: border-box;
+}
+.edit-save-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-width: 100%;
+  flex: 1;
+  justify-content: flex-start;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.button-edit {
+  cursor: not-allowed;
+  border: 1px solid #0c21c1;
+  padding: 18px 20px;
+  background-color: rgba(210, 215, 250, 0.3);
+  flex: 1;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 131px;
+}
+.button-edit:hover {
+  background-color: rgba(184, 189, 224, 0.3);
+  border: 1px solid #4054f5;
+  box-sizing: border-box;
+}
+.bg48 {
+  position: relative;
+  height: 60px;
+  width: 202px;
+  border-radius: 10px;
+  background-color: rgba(210, 215, 250, 0.3);
+  border: 1px solid #0c21c1;
+  box-sizing: border-box;
+  display: none;
+}
+.edit {
+  position: relative;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: Inter;
+  color: #000108;
+  text-align: center;
+  display: inline-block;
+  min-width: 30px;
+  z-index: 1;
+
+}
 .button-frame {
   display: flex;
   align-items: center;

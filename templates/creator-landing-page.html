@@ -64,7 +64,7 @@
             class="logo-icon4"
             loading="lazy"
             alt=""
-            src="../assets/public/logo.svg"
+            src="../assets/public/Logo.png"
           />
 
           <div class="nav-links4">
@@ -386,7 +386,11 @@
         if (content) {
           const title = document.createElement('h3');
           title.classList.add('java-basics2');
-          title.textContent = course.name;
+          if (course.name.length > 13) {
+            title.textContent = `${course.name.slice(0, 13)}...`;
+          } else {
+            title.textContent = course.name;
+          }
           badge.appendChild(title);
           details.appendChild(badge);
   
@@ -445,32 +449,36 @@
           buttons.appendChild(deleteButton);
 
           viewButton.addEventListener('click', function() {
-            window.location.href = `/templates/creator-preview-course.html?courseId=${course.id}`;
+            window.location.href = `/templates/user-learn-material.html?courseId=${course.id}`;
           })
 
-          // TODO: Share Button make modal
+          shareButton.addEventListener('click', function() {
+            window.location.href = `/templates/creator-circle-share.html?courseId=${course.id}`;
+          })
 
           deleteButton.addEventListener('click', function() {
-            const keyAuth = localStorage.getItem('keyLearntelligence');
-
-            fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${course.id}`, {
-              method: 'DELETE',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + keyAuth
-              }
-            })
-            .then(response => response.json())
-            .then(data => {
-              if (data.status == '200') {
-                fetchCourses();
-              } else if (data.status == '404' || data.status == '500') {
-                alert(data.message);
-              } else { // unauthorized, not logged in, user not found
-                alert(data.message);
-                window.location.href = '/templates/sign-in-page.html';
-              }
-            })
+            if (confirm(`Are you sure you want to delete ${course.name} course?`)) {
+              const keyAuth = localStorage.getItem('keyLearntelligence');
+  
+              fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${course.id}`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': "Bearer " + keyAuth
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.status == '200') {
+                  fetchCourses();
+                } else if (data.status == '404' || data.status == '500') {
+                  alert(data.message);
+                } else { // unauthorized, not logged in, user not found
+                  alert(data.message);
+                  window.location.href = '/templates/sign-in-page.html';
+                }
+              })
+            }
           })
   
           actions.appendChild(buttons);

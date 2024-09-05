@@ -69,6 +69,14 @@
         <div class="chapters-layout">
           <div class="chapter-items" id="chapter-section">
           </div>
+          <div class="chapter-actions" id="chapter-actions">
+            <div class="edit-save-buttons">
+              <button class="button-edit" title="Under Development">
+                <div class="bg48"></div>
+                <div class="edit">Edit</div>
+              </button>
+            </div>
+          </div>
         </div>
         <section class="content1">
           <div class="content-visual"></div>
@@ -91,9 +99,18 @@
       });
 
       window.onload = async function() {
-        const courseId = new URLSearchParams(window.location.search).get('courseId');
-        const circleId = new URLSearchParams(window.location.search).get('circleId');
+        const params =  new URLSearchParams(window.location.search);
+        const courseId = params.get('courseId');
+        let circleId;
+        if (params.get('lp') == 'true') {
+          circleId = 'landingPage'
+        } else if (params.get('cr') == 'true') {
+          circleId = 'creatorLP'
+        } else {
+          circleId = params.get('circleId');
+        }
 
+        fetchUserData();
         try {
           materials = await fetchCourseData(courseId, circleId);
           fillChaptersSection();
@@ -104,24 +121,63 @@
         }
       }
 
-      async function fetchCourseData(courseId, circleId) {
+      function fetchUserData() {
         const keyAuth = localStorage.getItem('keyLearntelligence');
-
-        const response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${courseId}?circleId=${circleId}`, {
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + keyAuth
+            'Authorization': "Bearer " + keyAuth
           }
-        });
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            if (data.data.role == 'user') {
+              document.getElementById('chapter-actions').style.display = 'none';
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      async function fetchCourseData(courseId, circleId) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        let response;
+        if (circleId != 'landingPage') {
+          response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${courseId}?circleId=${circleId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + keyAuth
+            }
+          });
+        } else {
+          response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/landingpage/${courseId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + keyAuth
+            }
+          });
+        }
 
         const data = await response.json();
-        if (response.ok) {
-          // alert(data.message);
+        if (data.status == '200') {
           document.getElementById('course-big-title').innerText = data.data.name;
           return data.data.content;
-        } else {
+        } else if (data.status == '500') {
           alert(data.message);
+          window.history.back();
+        } else { // unauthorized, not logged in, user not found
+          alert(data.message);
+          window.location.href = '/templates/sign-in-page.html';
         }
       }
 
@@ -162,7 +218,7 @@
       }
 
       function selectChapter(index) {
-        if (index !== selectedChapter && isMaterial) {
+        if ((index !== selectedChapter && isMaterial) || !isMaterial) {
           document.getElementById(`chapter-${selectedChapter}`).className = 'chapter-unselect';
           document.getElementById(`chapter-${index}`).className = 'chapter-select';
           fillMaterialContent(index-1)
@@ -232,6 +288,7 @@
       }
 
       function fillQuizContent(index, number) {
+        isMaterial = false;
         const quizLength = materials[index-1].quiz.length;
         const question = materials[index-1].quiz[number-1];
         const parent = document.getElementById('content-parent');
@@ -348,17 +405,3 @@
     </script>
   </body>
 </html>
-
-<!-- 
-<div class="answer-frame">
-  <div class="option-card"> V
-    <div class="option"></div> VV
-    <div class="option-content"> VV
-      <div class="option-letter">VV
-        <h1 class="letter">A</h1> VV
-    <div class="option-answer"> V
-      <h3 class="answer">This is the ice cold</h3> VV
-    </div>
-  </div>
-</div> 
--->

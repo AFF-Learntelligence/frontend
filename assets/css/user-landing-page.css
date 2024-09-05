@@ -56,8 +56,8 @@
   left: 0;
 }
 .logo-icon2 {
-  height: 40.5px;
-  width: 156.8px;
+  height: 50px;
+  width: 50px;
   position: relative;
 }
 .home2 {
@@ -286,7 +286,7 @@
   font-weight: 500;
   font-family: Inter;
   color: #fff;
-  text-align: left;
+  text-align: center;
   display: inline-block;
   min-width: 90px;
   z-index: 1;
@@ -327,9 +327,6 @@
   align-items: flex-start;
   justify-content: center;
   max-width: 100%;
-}
-.category-name {
-  gap: 38px;
 }
 .category-display {
   width: 652px;
@@ -461,6 +458,7 @@
   padding: 33px 15px 30px;
   box-sizing: border-box;
   gap: 55px;
+  height: 450px;
   min-width: 267px;
   max-width: 290px;
 }
@@ -550,6 +548,7 @@
   background-color: #fff;
 }
 .standard-list1 {
+  height: 450px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -648,6 +647,7 @@
   background-color: #fff;
 }
 .standard-list2 {
+  height: 450px;
   flex: 1;
   box-shadow: 0 50px 80px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -742,6 +742,7 @@
   padding: 0 47px 0 51px;
 }
 .standard-list3 {
+  height: 450px;
   flex: 1;
   border-radius: 15px;
   background-color: #fff;
@@ -1906,9 +1907,6 @@
   .free-courses-generated {
     font-size: 27px;
     line-height: 33px;
-  }
-  .category-name {
-    gap: 19px;
   }
   .standard-one {
     font-size: 20px;

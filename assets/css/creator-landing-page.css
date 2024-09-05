@@ -58,8 +58,8 @@
   left: 0;
 }
 .logo-icon4 {
-  height: 40.5px;
-  width: 156.8px;
+  height: 50px;
+  width: 50px;
   position: relative;
 }
 .logout {
@@ -448,7 +448,7 @@
 }
 .card-content,
 .card-content-new {
-  flex: 1;
+  /* flex: 1; */
   border-radius: 15px;
   background-color: #fff;
   display: flex;

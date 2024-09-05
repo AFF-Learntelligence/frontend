@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="../assets/css/creator-circle-share.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito Sans:wght@700&display=swap"
+    />
+
+    <style>
+      @font-face {
+        font-family: "Font Awesome 5 Free";
+        src: url("../assets/public/Font Awesome 5 Free-Regular-400.otf");
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="creator-circle-creation">
+      <div class="content-header4">
+        <div class="content-header-child2"></div>
+        <h1 class="create-circle">Add Course To Circle</h1>
+      </div>
+        <footer class="content6">
+          <section class="rectangle2"></section>
+          <section class="circle-form">
+            <div class="description-form">
+              <h2 class="create-new-circle" id="course-title"></h2>
+              <div class="lorem-ipsum-dolor8" id="course-desc"></div>
+            </div>
+            <div class="circle-info-form" id="circle-list">
+              <div class="circle-name-form">
+                <div class="circle-name2">Circle Choices</div>
+              </div>
+              <div class="circle-info-form-child"></div>
+            </div>
+          </section>
+          <div class="create-button-area">
+            <button class="button-create-circle" id="submit-button">
+              <div class="bg47"></div>
+              <div class="create-circle1">Add Course</div>
+            </button>
+          </div>
+        </footer>
+    </div>
+    <script>
+      let courseId;
+      let count = 0;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('submit-button');
+
+        button.addEventListener('click', function() {
+          const checkboxes = document.querySelectorAll('.circle-checkbox');
+          let circles = [];
+
+          checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                circles.push(checkbox.value);
+            }
+          });
+
+          publishCourse(circles);
+        })
+      })
+
+      window.onload = function() {
+        const params =  new URLSearchParams(window.location.search);
+        courseId = params.get('courseId');
+        fetchUserData();
+        fetchCircles(courseId)
+      }
+
+      function fetchUserData() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            if (data.data.role == 'user') {
+              window.location.href = `/templates/${data.data.role}-landing-page.html`
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fetchCircles(courseId) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/circles/unpublished/${courseId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            document.getElementById('course-title').innerText = data.courseName;
+            document.getElementById('course-desc').innerText = data.courseDescription;
+            count = data.unpublishedCircles.length
+
+            if (data.unpublishedCircles.length > 0) {
+              data.unpublishedCircles.forEach((circle, index) => {
+                fillCircles(circle.circleId, circle.circleName, index);
+              });
+            } else {
+              alert('There are no available circles');
+              window.location.href = '/templates/creator-landing-page.html';
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+            window.location.href = '/templates/creator-landing-page.html';
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
+      function fillCircles(circleId, circleName, index) {
+        const parent = document.getElementById('circle-list');
+
+        const option = document.createElement('div');
+        option.classList.add('name-team-form');
+        option.addEventListener('click', function() {
+          document.getElementById(`checkbox-${index}`).checked = true;
+        })
+
+        const inside = document.createElement('div');
+        inside.classList.add('circle-team-form');
+        const child = document.createElement('div');
+        child.classList.add('circle-team-form-child');
+        inside.appendChild(child);
+        const box = document.createElement('input');
+        box.classList.add('circle-checkbox');
+        box.type = 'checkbox';
+        box.name = `checkbox-${index}`;
+        box.id = `checkbox-${index}`;
+        box.value = circleId;
+        inside.appendChild(box);
+        const lab = document.createElement('label');
+        lab.setAttribute('for', `checkbox-${index}`);
+        lab.textContent = circleName;
+        inside.appendChild(lab);
+
+        option.appendChild(inside);
+        parent.appendChild(option);
+      }
+
+      function publishCourse(circles) {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        const data = {
+          'courseId': courseId,
+          'circleIds': circles
+        }
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/publish', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            window.location.href = '/templates/creator-landing-page.html';
+          } else if (data.status == '500') {
+            alert(data.message);
+            window.location.href = '/templates/creator-landing-page.html';
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+    </script>
+  </body>
+</html>

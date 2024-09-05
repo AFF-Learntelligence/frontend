@@ -50,13 +50,14 @@
             class="logo-icon3"
             loading="lazy"
             alt=""
-            src="../assets/public/logo.svg"
+            src="../assets/public/Logo.png"
           />
 
           <div class="nav-links3">
-            <a class="home3" href="/templates/creator-landing-page.html">Home</a>
+            <a class="home3" id="home">Home</a>
           </div>
           <div class="login-section3">
+            <button class="logout" id="logout">Sign out</button>
             <img
               class="avatar-icon3"
               loading="lazy"
@@ -112,9 +113,15 @@
 
       document.addEventListener('DOMContentLoaded', function() {
         const createButton = document.getElementById('create-course');
+        const logoutButton = document.getElementById('logout');
 
         createButton.addEventListener('click', function() {
           window.location.href = `/templates/${userRole}-course-creation.html`;
+        })
+
+        logoutButton.addEventListener('click', function() {
+          localStorage.removeItem('keyLearntelligence');
+          window.location.href = '/templates/sign-in-page.html';
         })
       })
 
@@ -137,6 +144,7 @@
         .then(data => {
           if (data.status == '200') {
             userRole = data.data.role;
+            document.getElementById('home').href = `/templates/${data.data.role}-landing-page.html`
           } else if (data.status == '500') {
             alert(data.message);
           } else { // unauthorized, not logged in, user not found
@@ -183,7 +191,7 @@
         const courseSection = document.getElementById('java-course');
         courseSection.innerHTML = '';
         data.courses.forEach(course => {
-          if (!course.isContentLoading && course.published) {
+          if (!course.onContentLoading && course.published) {
             courseSection.appendChild(createCardCourse(course));
           }
         });
@@ -235,7 +243,7 @@
           viewButton.appendChild(bg36);
           viewButton.appendChild(view);
           viewButton.addEventListener('click', function() {
-            window.location.href = `/templates/creator-preview-course.html?courseId=${course.id}&circleId=${circleId}`;
+            window.location.href = `/templates/user-learn-material.html?courseId=${course.id}&circleId=${circleId}`;
           })
           buttons.appendChild(viewButton);
   
@@ -245,15 +253,15 @@
           bg37.classList.add('bg37');
           const del = document.createElement('div');
           del.classList.add('delete');
-          del.innerText = 'Delete';
+          del.innerText = 'Remove';
           deleteButton.appendChild(bg37);
           deleteButton.appendChild(del);
           deleteButton.addEventListener('click', function() {
-            if (confirm(`Are you sure you want to delete ${course.name} course from this circle?`)) {
+            if (confirm(`Are you sure you want to remove ${course.name} course from this circle?`)) {
               const keyAuth = localStorage.getItem('keyLearntelligence');
               const circleId = new URLSearchParams(window.location.search).get('circleId');
   
-              fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/${course.id}?circleId=${circleId}`, {
+              fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${course.id}?circleId=${circleId}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
@@ -264,7 +272,7 @@
               .then(data => {
                 if (data.status == '200') {
                   fetchCircleData();
-                } if (data.status == '404') {
+                } else if (data.status == '404') {
                   alert(data.message);
                 } else {
                   alert(data.message);

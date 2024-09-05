@@ -55,12 +55,7 @@
             <div class="description-form">
               <h2 class="create-new-circle">Create new circle</h2>
               <div class="lorem-ipsum-dolor8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmodadipiscing elit, sed do eiusmodLorem ipsum dolor sit amet,
-                consectetur adipiscing elit, sed do eiusmodadipiscing elit, sed do
-                eiusmodLorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmodadipiscing elit, sed do eiusmodeiusmodadipiscing
-                elit, sed do eiusmodLorem
+                Build your learning community by creating a circle tailored to your interests and expertise. Define the purpose of your circle, invite members, and manage content to create a focused educational environment. Start by providing the necessary details and let the platform help you manage your circle with ease.
               </div>
             </div>
             <div class="circle-info-form">
@@ -118,6 +113,35 @@
 
         submitForm(name, description);
       })
+
+      window.onload = function() {
+        fetchUserData();
+      }
+
+      function fetchUserData() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+        
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            if (data.data.role == 'user') {
+              window.location.href = `/templates/${data.data.role}-landing-page.html`
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
 
       function submitForm(name, description) {
         const keyAuth = localStorage.getItem('keyLearntelligence');
