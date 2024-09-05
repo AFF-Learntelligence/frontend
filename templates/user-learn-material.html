@@ -105,7 +105,7 @@
         if (params.get('free') == 'true') {
           circleId = 'landingPage'
         } else if (params.get('cr') == 'true') {
-          circleId = 'creatorLP'
+          circleId = 'creator'
         } else {
           circleId = params.get('circleId');
         }
@@ -150,8 +150,16 @@
         const keyAuth = localStorage.getItem('keyLearntelligence');
 
         let response;
-        if (circleId != 'landingPage') {
-          response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${courseId}?circleId=${circleId}`, {
+        if (circleId == 'landingPage') {
+          response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/landingpage/${courseId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + keyAuth
+            }
+          });
+        } else if (circleId == 'creator') {
+          response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/landingpage/creator/${courseId}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -159,7 +167,7 @@
             }
           });
         } else {
-          response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/landingpage/${courseId}`, {
+          response = await fetch(`https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/${courseId}?circleId=${circleId}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -273,6 +281,11 @@
               child = document.createElement('h2');
               child.classList.add('o6-super-coins');
               child.innerText = paragraph.replace(/##\s*/, '');
+            } else if (paragraph.startsWith('```')) {
+              child = document.createElement('pre');
+              const code = document.createElement('code');
+              code.textContent = paragraph.replace(/```\s?|```\s?$/g, '').trim();
+              child.appendChild(code);
             } else if (!paragraph.startsWith('#')) {
               child = document.createElement('div');
               child.classList.add('lorem-ipsum-dolor');
