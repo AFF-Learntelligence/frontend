@@ -536,6 +536,31 @@
         })
       })
 
+      function checkModelStatus() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/content-loading-status', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200' && data.data.generating) {
+            window.location.href = '/templates/creator-landing-page.html'
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else if (data.status == '400') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
+      }
+
       function toggleChapters(level) {
         for (let i = 6; i <= 15; i++) {
           const chapter = document.getElementById('chapter-' + i);
@@ -662,16 +687,7 @@
         })
         .then(response => response.json())
         .then(data => {
-          if (data.status == '201') {
-            alert(data.message); // TODO: redirect to correct page
-          } else if (data.status == '500') {
-            alert(data.message);
-          } else if (data.status == '400') {
-            alert(data.message);
-          } else { // unauthorized, not logged in, user not found
-            alert(data.message);
-            window.location.href = '/templates/sign-in-page.html';
-          }
+          window.location.href = '/templates/sign-in-page.html'
         })
       }
     </script>
