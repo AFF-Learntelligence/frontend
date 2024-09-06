@@ -1009,6 +1009,9 @@
 .circle-link:focus {
   outline: none; 
 }
+.circle-link-create:hover {
+  cursor: default;
+}
 .circle-card {
   width: 250px;
   height: 300px;

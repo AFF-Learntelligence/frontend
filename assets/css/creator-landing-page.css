@@ -307,6 +307,7 @@
   overflow: hidden;
 }
 .card-details {
+  height: 100%;
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -462,6 +463,7 @@
   max-width: 300px;
   min-height: 400px;
   overflow: hidden;
+  z-index: 10;
 }
 .bg55,
 .icon1 {

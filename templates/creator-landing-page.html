@@ -348,8 +348,13 @@
         })
         .then(response => response.json())
         .then(data => {
+          console.log(data)
           if (data.status == '200') {
-            fillCourses(data.data);
+            if (data.message == 'No courses found for this creator') {
+              fillCourses([])
+            } else {
+              fillCourses(data.data);
+            }
           } else if (data.status == '500') {
             alert(data.message);
           } else { // unauthorized, not logged in, user not found
@@ -363,9 +368,11 @@
         const courseSection = document.getElementById('course-card1');
         courseSection.innerHTML = '';
 
-        courses.forEach(course => {
-          courseSection.appendChild(createCardCourse(course, true));
-        })
+        if (courses.length > 0) {
+          courses.forEach(course => {
+            courseSection.appendChild(createCardCourse(course, true));
+          })
+        }
         courseSection.appendChild(createCardCourse('', false));
       }
 
