@@ -752,7 +752,7 @@
   display: none;
 }
 .example-introduction-to {
-  width: 451px;
+  width: 100%;
   border: 0;
   outline: 0;
   font-family: Poppins;
@@ -902,7 +902,7 @@
   display: none;
 }
 .example-control-flow {
-  width: 451px;
+  width: 100%;
   border: 0;
   outline: 0;
   font-family: Poppins;
@@ -977,7 +977,7 @@
   display: none;
 }
 .example-functions {
-  width: 451px;
+  width: 100%;
   border: 0;
   outline: 0;
   font-family: Poppins;
@@ -1058,7 +1058,7 @@ body, form {
   display: none;
 }
 .example-basic-data {
-  width: 451px;
+  width: 100%;
   border: 0;
   outline: 0;
   font-family: Poppins;

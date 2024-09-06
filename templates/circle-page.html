@@ -114,9 +114,10 @@
       document.addEventListener('DOMContentLoaded', function() {
         const createButton = document.getElementById('create-course');
         const logoutButton = document.getElementById('logout');
+        const circleId = new URLSearchParams(window.location.search).get('circleId');
 
         createButton.addEventListener('click', function() {
-          window.location.href = `/templates/${userRole}-course-creation.html`;
+          window.location.href = `/templates/creator-course-creation.html?circleId=${circleId}`;
         })
 
         logoutButton.addEventListener('click', function() {

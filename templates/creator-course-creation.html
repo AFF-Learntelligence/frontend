@@ -455,6 +455,13 @@
         var lang = 'en';
         var fileUrl = '';
         var isGenerate = false;
+        let circleId = null;
+        const currentUrl = window.location.href;
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.has('circleId')) {
+          circleId = urlParams.get('circleId');
+        }
 
         manualChapter.addEventListener('click', function() {
           const courseTitle = document.getElementById('name-input').value;
@@ -530,7 +537,10 @@
               'youtubeUrls': youtubeUrls,
               'content': content
             }
-
+            if (circleId) {
+                data.circleId = circleId;
+            }
+           
             submitForm(data);
           }
         })
