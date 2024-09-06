@@ -458,8 +458,9 @@
   padding: 33px 15px 20px;
   box-sizing: border-box;
   gap: 77px;
-  width: 250px;
-  height: 300px;
+  width: 300px;
+  max-width: 300px;
+  min-height: 400px;
   overflow: hidden;
 }
 .bg55,
@@ -552,8 +553,8 @@
 .course-card1 {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Ensures space distribution */
-  gap: 10px; /* Manages spacing between cards */
+  justify-content: flex-start; /* Ensures space distribution */
+  gap: 30px; /* Manages spacing between cards */
 }
 
 .card-content,
@@ -776,6 +777,9 @@
 }
 .card-hover {
   background-color: #f0f0f0; /* Your desired hover color */
+}
+.card-not-allowed:hover {
+  cursor: not-allowed;
 }
 .circle-card:hover,
 .card-content-new:hover {

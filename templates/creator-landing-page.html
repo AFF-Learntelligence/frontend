@@ -371,7 +371,11 @@
 
       function createCardCourse(course, content) {
         const parent = document.createElement('div');
-        parent.classList.add('card-content');
+        if (content) {
+          parent.classList.add('card-content');
+        } else {
+          parent.classList.add('card-content-new')
+        }
         
         const bg = document.createElement('div');
         bg.classList.add('bg51');
@@ -386,8 +390,8 @@
         if (content) {
           const title = document.createElement('h3');
           title.classList.add('java-basics2');
-          if (course.name.length > 13) {
-            title.textContent = `${course.name.slice(0, 13)}...`;
+          if (course.name.length > 25) {
+            title.textContent = `${course.name.slice(0, 25)}...`;
           } else {
             title.textContent = course.name;
           }
@@ -403,7 +407,9 @@
             description = course.description;
           }
           if (course.onContentLoading) {
-            desc.innerHTML = description + '<br><br>GENERATING';
+            parent.style.backgroundColor = '#c5c6c7';
+            parent.classList.add('card-not-allowed');
+            desc.innerHTML = description + '<br><br><strong>Generating content...<br>May take 5-15 minutes<strong>';
           } else {
             desc.innerText = description;
           }
