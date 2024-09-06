@@ -168,7 +168,6 @@
         const logoutButton = document.getElementById('logout');
         const joinCircleButton = document.getElementById('join-circle-button');
         const invitationInput = document.getElementById('invitation-link');
-        const newCourse = document.getElementById('new-course-card');
 
         invitationInput.addEventListener('input', function() {
           document.getElementById('join-success').style.display = 'none';
@@ -182,10 +181,6 @@
 
         joinCircleButton.addEventListener('click', function() {
           joinCircle(invitationInput.value);
-        })
-
-        newCourse.addEventListener('click', function() {
-          window.location.href =  '/templates/creator-course-creation.html'
         })
       })
 
@@ -348,7 +343,6 @@
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           if (data.status == '200') {
             fillCourses(data.data);
           } else if (data.status == '500') {
@@ -370,6 +364,35 @@
           })
         }
         courseSection.appendChild(createCardCourse('', false));
+      }
+
+      function checkModelStatus() {
+        const keyAuth = localStorage.getItem('keyLearntelligence');
+
+        fetch('https://aff-learntelligence-be-3xei6xi65q-et.a.run.app/api/courses/content-loading-status', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + keyAuth
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == '200') {
+            if (data.data.generating) {
+              alert('Server is busy, please try again in a few minutes. Model can only generate 1 course at a time.')
+            } else {
+              window.location.href = '/templates/creator-course-creation.html';
+            }
+          } else if (data.status == '500') {
+            alert(data.message);
+          } else if (data.status == '400') {
+            alert(data.message);
+          } else { // unauthorized, not logged in, user not found
+            alert(data.message);
+            window.location.href = '/templates/sign-in-page.html';
+          }
+        })
       }
 
       function createCardCourse(course, content) {
@@ -505,7 +528,7 @@
           });
 
           parent.addEventListener('click', function() {
-            window.location.href = '/templates/creator-course-creation.html';
+            checkModelStatus();
           })
         }
         return parent;
