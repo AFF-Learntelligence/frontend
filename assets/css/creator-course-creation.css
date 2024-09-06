@@ -113,7 +113,7 @@
   display: none;
 }
 .example-python-programming {
-  width: 451px;
+  width: 100%;
   border: 0;
   outline: 0;
   font-family: Poppins;
@@ -246,19 +246,6 @@
   box-sizing: border-box;
   display: none;
 }
-.example-python-programming1 {
-  width: 1216px;
-  border: 0;
-  outline: 0;
-  font-family: Poppins;
-  font-size: 18px;
-  height: 27px;
-  color: #9d9b9b;
-  text-align: left;
-  display: inline-block;
-  padding: 0;
-  z-index: 3;
-}
 .course-details,
 .name-example1,
 .rectangle-parent18 {
@@ -281,6 +268,21 @@
 .course-details,
 .name-example1 {
   flex-direction: column;
+}
+.example-python-programming1 {
+  width: 95%;
+  border: 0;
+  outline: 0;
+  font-family: Poppins;
+  font-size: 18px;
+  height: auto;
+  color: #9d9b9b;
+  text-align: left;
+  display: inline-block;
+  padding: 0;
+  z-index: 3;
+  resize: none;
+  box-sizing: border-box;
 }
 .name-example1 {
   flex: 1;
@@ -825,7 +827,7 @@
   display: none;
 }
 .example-variables-and {
-  width: 451px;
+  width: 100%;
   border: 0;
   outline: 0;
   font-family: Poppins;

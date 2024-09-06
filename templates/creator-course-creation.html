@@ -43,7 +43,7 @@
     </style>
   </head>
   <body>
-    <form>
+    <form id="course-form">
     <div class="creator-course-creation">
       <header class="content-header6">
         <div class="content-header-child4"></div>
@@ -80,13 +80,13 @@
             </div>
             <div class="rectangle-parent18">
               <div class="frame-child20"></div>
-              <input
+              <textarea
                 class="example-python-programming1"
                 id="description-input"
                 placeholder="Example: Python Programming Basics is a foundational concept about...."
                 type="text"
                 required
-              />
+              ></textarea>
             </div>
           </div>
           <div class="chapters-inner">
@@ -412,6 +412,8 @@
     </div>
     </form>
     <script>
+      var generating = false;
+
       window.onload = function() {
         fetchUserData();
         toggleChapters(5);
@@ -443,7 +445,7 @@
       }
 
       document.addEventListener('DOMContentLoaded', function() {
-        const generateButton = document.getElementById('generate-button');
+        const form = document.getElementById('course-form');
         const levelElement = document.getElementById('level');
         const manualChapter = document.getElementById('chapter-manual');
         const generateChapter = document.getElementById('chapter-generate');
@@ -502,30 +504,35 @@
           toggleFillChapters(courseTitle, courseLength, isGenerate, lang)
         })
 
-        generateButton.addEventListener('click', function() {
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
           const pdfUrls = fileUrl ? [fileUrl] : [];
           const youtubeLink = document.getElementById('youtube-link-input').value; 
           const youtubeUrls = youtubeLink ? [youtubeLink] : [];
           const courseLength = levelElement.value;
           const content = [];
-          for (let chapter = 1; chapter <= courseLength; chapter++) {
-            const title = document.getElementById('chapter-input-' + chapter).value;
-            content.push({
-              'chapter': chapter,
-              'title': title
-            })
-          }
+          if (generating) {
+            alert('Chapters are still being generated');
+          } else {
+            for (let chapter = 1; chapter <= courseLength; chapter++) {
+              const title = document.getElementById('chapter-input-' + chapter).value;
+              content.push({
+                'chapter': chapter,
+                'title': title
+              })
+            }
+  
+            const data = {
+              'name': document.getElementById('name-input').value,
+              'description': document.getElementById('description-input').value,
+              'lang': lang,
+              'pdfUrls': pdfUrls,
+              'youtubeUrls': youtubeUrls,
+              'content': content
+            }
 
-          const data = {
-            'name': document.getElementById('name-input').value,
-            'description': document.getElementById('description-input').value,
-            'lang': lang,
-            'pdfUrls': pdfUrls,
-            'youtubeUrls': youtubeUrls,
-            'content': content
+            submitForm(data);
           }
-
-          submitForm(data);
         })
       })
 
@@ -586,6 +593,8 @@
 
       function toggleFillChapters(courseTitle, courseLength, isGenerate, lang) {
         if (isGenerate) {
+          generating = true;
+
           for (let i = 1; i <= courseLength; i++) {
             document.getElementById('chapter-input-' + i).value = 'Loading...'
           }
@@ -619,6 +628,7 @@
                     console.error(`No input field found for chapter ${chapter.chapter}`);
                   }
                 });
+                generating = false;
               } else {
                 console.error('Expected an array but got:', chapters);
                 alert('Unexpected data format received from server.');
